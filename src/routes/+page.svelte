@@ -5,7 +5,7 @@
 </script>
 
 <!-- HERO -->
-<section class="relative overflow-hidden bg-[#8d99ad]">
+<section id="top" class="relative overflow-hidden bg-[#8d99ad]">
 	<img
 		src="/hero.webp"
 		alt="New collection — flagship smartphones in blue, silver and purple"
@@ -58,7 +58,7 @@
 </section>
 
 <!-- NEW COLLECTION FEATURE -->
-<section class="bg-mist">
+<section id="collection" class="bg-mist">
 	<div class="mx-auto grid max-w-7xl gap-10 px-4 pb-16 sm:px-6 md:grid-cols-2 md:gap-12 md:pb-20">
 		<div class="overflow-hidden bg-[#e8e8e8]">
 			<img

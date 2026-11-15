@@ -1,8 +1,15 @@
 <script lang="ts">
 	import Icon from './Icon.svelte';
-	import { cart } from '../data/cart.svelte';
+	import { cart, showToast } from '../data/cart.svelte';
 
-	const links = ['Home', 'Devices', 'Audio', 'Cameras', 'Brands', 'New'];
+	const links: { label: string; href: string }[] = [
+		{ label: 'Home', href: '#top' },
+		{ label: 'Devices', href: '#smartphones' },
+		{ label: 'Audio', href: '#ready-to-wear' },
+		{ label: 'Cameras', href: '#collection' },
+		{ label: 'Brands', href: '#ready-to-wear' },
+		{ label: 'New', href: '#ready-to-wear' }
+	];
 
 	let menuOpen = $state(false);
 	let searchOpen = $state(false);
@@ -15,8 +22,8 @@
 		<span class="hidden md:block">Free shipping worldwide</span>
 		<span class="mx-auto md:mx-0">Up to 10% off on selected tech. Limited time only.</span>
 		<span class="hidden gap-5 md:flex">
-			<a href="/contact" class="hover:opacity-70">Contact</a>
-			<a href="/about" class="hover:opacity-70">About</a>
+			<a href="#contact" class="hover:opacity-70">Contact</a>
+			<a href="#about" class="hover:opacity-70">About</a>
 		</span>
 	</div>
 </div>
@@ -35,7 +42,7 @@
 			</button>
 			<nav class="hidden items-center gap-6 text-[11px] font-medium tracking-[0.18em] uppercase md:flex" aria-label="Primary">
 				{#each links as link}
-					<a href="#{link.toLowerCase()}" class="hover:opacity-60">{link}</a>
+					<a href={link.href} class="hover:opacity-60">{link.label}</a>
 				{/each}
 			</nav>
 		</div>
@@ -48,18 +55,35 @@
 			<button class="p-2 hover:opacity-60" aria-label="Search" onclick={() => (searchOpen = !searchOpen)}>
 				<Icon name="search" size={20} />
 			</button>
-			<a href="/account" class="hidden p-2 hover:opacity-60 sm:block" aria-label="Account">
+			<button
+				class="hidden p-2 hover:opacity-60 sm:block"
+				aria-label="Account"
+				onclick={() => showToast('Account sign-in is coming soon')}
+			>
 				<Icon name="user" size={20} />
-			</a>
-			<a href="/cart" class="relative p-2 hover:opacity-60" aria-label="Shopping bag">
+			</button>
+			<button
+				class="relative p-2 hover:opacity-60"
+				aria-label="Shopping bag"
+				onclick={() =>
+					showToast(
+						cart.count > 0
+							? `${cart.count} item${cart.count > 1 ? 's' : ''} in your bag`
+							: 'Your bag is empty — tap Add to bag on a product'
+					)}
+			>
 				<Icon name="bag" size={20} />
 				{#if cart.count > 0}
 					<span class="absolute top-0 right-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-black px-1 text-[10px] font-medium text-white">{cart.count}</span>
 				{/if}
-			</a>
-			<a href="/wishlist" class="hidden p-2 hover:opacity-60 sm:block" aria-label="Wishlist">
+			</button>
+			<button
+				class="hidden p-2 hover:opacity-60 sm:block"
+				aria-label="Wishlist"
+				onclick={() => showToast('Wishlist is coming soon')}
+			>
 				<Icon name="heart" size={20} />
-			</a>
+			</button>
 		</div>
 	</div>
 
@@ -91,18 +115,16 @@
 		<nav class="border-t border-line px-4 py-2 md:hidden" aria-label="Mobile">
 			{#each links as link}
 				<a
-					href="#{link.toLowerCase()}"
+					href={link.href}
 					class="block border-b border-line py-3 text-xs font-medium tracking-[0.2em] uppercase last:border-0"
 					onclick={() => (menuOpen = false)}
 				>
-					{link}
+					{link.label}
 				</a>
 			{/each}
 			<div class="flex gap-6 py-3 text-xs font-medium tracking-[0.2em] uppercase">
-				<a href="/contact">Contact</a>
-				<a href="/about">About</a>
-				<a href="/account">Account</a>
-				<a href="/wishlist">Wishlist</a>
+				<a href="#contact" onclick={() => (menuOpen = false)}>Contact</a>
+				<a href="#about" onclick={() => (menuOpen = false)}>About</a>
 			</div>
 		</nav>
 	{/if}

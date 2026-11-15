@@ -1,7 +1,14 @@
 <script lang="ts">
 	import Icon from './Icon.svelte';
 
-	const shop = ['Smartphones', 'Smartwatches', 'Audio', 'Cameras', 'Gaming', 'Accessories'];
+	const shop = [
+		{ label: 'Smartphones', href: '#smartphones' },
+		{ label: 'Smartwatches', href: '#ready-to-wear' },
+		{ label: 'Audio', href: '#ready-to-wear' },
+		{ label: 'Cameras', href: '#collection' },
+		{ label: 'Gaming', href: '#ready-to-wear' },
+		{ label: 'Accessories', href: '#collection' }
+	];
 	const support = ['Track Order', 'Shipping & Delivery', 'Returns & Refunds', 'Warranty', 'Contact Us'];
 	const company = ['About Us', 'Careers', 'Press', 'Privacy Policy', 'Terms of Service'];
 
@@ -9,7 +16,7 @@
 	let subscribed = $state(false);
 </script>
 
-<footer class="border-t border-line bg-white">
+<footer id="contact" class="border-t border-line bg-white">
 	<!-- Trust strip -->
 	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-6 border-b border-line px-4 py-8 sm:grid-cols-3 sm:px-6">
 		<div class="flex items-center gap-4">
@@ -37,7 +44,7 @@
 
 	<!-- Link columns + newsletter -->
 	<div class="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-12 sm:px-6 md:grid-cols-5">
-		<div class="col-span-2 md:col-span-2">
+		<div id="about" class="col-span-2 md:col-span-2">
 			<p class="text-xl font-light tracking-[0.32em] uppercase">Electdove</p>
 			<p class="mt-4 max-w-xs text-sm leading-relaxed text-muted">
 				Premium devices for a smarter tomorrow. The best in technology, design and performance — in one place.
@@ -66,19 +73,19 @@
 		<div>
 			<p class="text-xs font-semibold tracking-[0.18em] uppercase">Shop</p>
 			<ul class="mt-4 space-y-2.5 text-sm text-muted">
-				{#each shop as item}<li><a href="#shop" class="hover:text-black">{item}</a></li>{/each}
+				{#each shop as item}<li><a href={item.href} class="hover:text-black">{item.label}</a></li>{/each}
 			</ul>
 		</div>
 		<div>
 			<p class="text-xs font-semibold tracking-[0.18em] uppercase">Support</p>
 			<ul class="mt-4 space-y-2.5 text-sm text-muted">
-				{#each support as item}<li><a href="#support" class="hover:text-black">{item}</a></li>{/each}
+				{#each support as item}<li><a href="#contact" class="hover:text-black">{item}</a></li>{/each}
 			</ul>
 		</div>
 		<div>
 			<p class="text-xs font-semibold tracking-[0.18em] uppercase">Company</p>
 			<ul class="mt-4 space-y-2.5 text-sm text-muted">
-				{#each company as item}<li><a href="#company" class="hover:text-black">{item}</a></li>{/each}
+				{#each company as item}<li><a href={item === 'About Us' ? '#about' : '#contact'} class="hover:text-black">{item}</a></li>{/each}
 			</ul>
 		</div>
 	</div>

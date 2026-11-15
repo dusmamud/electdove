@@ -2,9 +2,13 @@
 export const cart = $state({ count: 0, items: [] as string[] });
 export const toast = $state({ message: '', key: 0 });
 
+export function showToast(message: string) {
+	toast.message = message;
+	toast.key += 1;
+}
+
 export function addToCart(name: string) {
 	cart.count += 1;
 	cart.items = [...cart.items, name];
-	toast.message = `${name} added to bag`;
-	toast.key += 1;
+	showToast(`${name} added to bag`);
 }
