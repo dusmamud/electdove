@@ -6,7 +6,7 @@
 	import Stars from '#lib/components/Stars.svelte';
 	import Breadcrumbs from '#lib/components/Breadcrumbs.svelte';
 	import { categories, products, type Product } from '../../lib/data/products';
-	import { shop } from '../../lib/data/store.svelte';
+	import { shop, formatPrice } from '../../lib/data/store.svelte';
 
 	type SortKey = 'featured' | 'price-asc' | 'price-desc' | 'rating' | 'discount';
 	type PriceKey = 'all' | 'under600' | '600-900' | '900-1100' | '1100plus';
@@ -450,8 +450,8 @@
 									<span>({product.reviews})</span>
 								</p>
 								<p class="mt-2 flex items-baseline gap-2">
-									<span class="text-base font-extrabold text-ink">${product.price.toFixed(2)}</span>
-									<span class="text-xs text-stone-400 line-through">${product.oldPrice.toFixed(2)}</span>
+									<span class="text-base font-extrabold text-ink">{formatPrice(product.price)}</span>
+									<span class="text-xs text-stone-400 line-through">{formatPrice(product.oldPrice)}</span>
 								</p>
 								<button
 									type="button"

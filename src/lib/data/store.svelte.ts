@@ -73,7 +73,7 @@ export const PROMOS: Record<string, { type: 'percent' | 'ship'; value: number; l
 export const ORDER_STEPS = ['Placed', 'Processing', 'Shipped', 'Out for delivery', 'Delivered'] as const;
 
 export function formatPrice(n: number): string {
-	return '$' + n.toFixed(2);
+	return Number.isInteger(n) ? '$' + n.toLocaleString('en-US') : '$' + n.toFixed(2);
 }
 
 export function formatDate(ts: number): string {
