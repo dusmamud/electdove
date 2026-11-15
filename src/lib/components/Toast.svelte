@@ -1,20 +1,12 @@
 <script lang="ts">
-	import { toast } from '../data/cart.svelte';
-
-	let visible = $state(false);
-	let timer: ReturnType<typeof setTimeout> | undefined;
-
-	$effect(() => {
-		if (toast.key > 0) {
-			visible = true;
-			clearTimeout(timer);
-			timer = setTimeout(() => (visible = false), 2600);
-		}
-	});
+	import { shop } from '../data/store.svelte';
 </script>
 
-{#if visible}
-	<div class="animate-toast-in fixed bottom-6 left-1/2 z-50 max-w-[calc(100vw-2rem)] -translate-x-1/2 bg-black px-5 py-3 text-center text-xs font-medium tracking-wide text-white shadow-lg">
-		{toast.message}
+{#if shop.toastMsg}
+	<div
+		role="status"
+		class="animate-toast-in fixed bottom-20 left-1/2 z-[60] -translate-x-1/2 rounded-full bg-ink px-5 py-3 text-sm font-medium whitespace-nowrap text-white shadow-xl lg:bottom-5"
+	>
+		{shop.toastMsg}
 	</div>
 {/if}

@@ -2,15 +2,27 @@
 	import Icon from './Icon.svelte';
 
 	const shop = [
-		{ label: 'Smartphones', href: '#smartphones' },
-		{ label: 'Smartwatches', href: '#ready-to-wear' },
-		{ label: 'Audio', href: '#ready-to-wear' },
-		{ label: 'Cameras', href: '#collection' },
-		{ label: 'Gaming', href: '#ready-to-wear' },
-		{ label: 'Accessories', href: '#collection' }
+		{ label: 'Smartphones', href: '/shop?category=Smartphones' },
+		{ label: 'Smartwatches', href: '/shop?category=Smartwatches' },
+		{ label: 'Audio', href: '/shop?category=Audio' },
+		{ label: 'Gaming', href: '/shop?category=Gaming' },
+		{ label: 'All Products', href: '/shop' },
+		{ label: 'Deals', href: '/deals' }
 	];
-	const support = ['Track Order', 'Shipping & Delivery', 'Returns & Refunds', 'Warranty', 'Contact Us'];
-	const company = ['About Us', 'Careers', 'Press', 'Privacy Policy', 'Terms of Service'];
+	const support = [
+		{ label: 'Track Order', href: '/track-order' },
+		{ label: 'Shipping & Delivery', href: '/shipping-policy' },
+		{ label: 'Returns & Refunds', href: '/returns-policy' },
+		{ label: 'Warranty', href: '/help' },
+		{ label: 'Contact Us', href: '/contact' }
+	];
+	const company = [
+		{ label: 'About Us', href: '/about' },
+		{ label: 'Blog', href: '/blog' },
+		{ label: 'Help Centre', href: '/help' },
+		{ label: 'Privacy Policy', href: '/privacy-policy' },
+		{ label: 'Terms of Service', href: '/terms' }
+	];
 
 	let email = $state('');
 	let subscribed = $state(false);
@@ -20,21 +32,21 @@
 	<!-- Trust strip -->
 	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-6 border-b border-line px-4 py-8 sm:grid-cols-3 sm:px-6">
 		<div class="flex items-center gap-4">
-			<Icon name="truck" size={26} />
+			<Icon name="truck" class="h-6 w-6" />
 			<div>
 				<p class="text-xs font-semibold tracking-[0.14em] uppercase">Free shipping</p>
 				<p class="mt-1 text-xs text-muted">On all orders worldwide, no minimum.</p>
 			</div>
 		</div>
 		<div class="flex items-center gap-4">
-			<Icon name="shield" size={26} />
+			<Icon name="shield" class="h-6 w-6" />
 			<div>
 				<p class="text-xs font-semibold tracking-[0.14em] uppercase">2-year warranty</p>
 				<p class="mt-1 text-xs text-muted">Every device covered, hassle-free.</p>
 			</div>
 		</div>
 		<div class="flex items-center gap-4">
-			<Icon name="refresh" size={26} />
+			<Icon name="refresh" class="h-6 w-6" />
 			<div>
 				<p class="text-xs font-semibold tracking-[0.14em] uppercase">30-day returns</p>
 				<p class="mt-1 text-xs text-muted">Changed your mind? Send it back.</p>
@@ -79,13 +91,13 @@
 		<div>
 			<p class="text-xs font-semibold tracking-[0.18em] uppercase">Support</p>
 			<ul class="mt-4 space-y-2.5 text-sm text-muted">
-				{#each support as item}<li><a href="#contact" class="hover:text-black">{item}</a></li>{/each}
+				{#each support as item}<li><a href={item.href} class="hover:text-black">{item.label}</a></li>{/each}
 			</ul>
 		</div>
 		<div>
 			<p class="text-xs font-semibold tracking-[0.18em] uppercase">Company</p>
 			<ul class="mt-4 space-y-2.5 text-sm text-muted">
-				{#each company as item}<li><a href={item === 'About Us' ? '#about' : '#contact'} class="hover:text-black">{item}</a></li>{/each}
+				{#each company as item}<li><a href={item.href} class="hover:text-black">{item.label}</a></li>{/each}
 			</ul>
 		</div>
 	</div>

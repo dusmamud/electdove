@@ -23,7 +23,7 @@
 					href="#ready-to-wear"
 					class="mt-8 inline-flex items-center gap-3 bg-black px-7 py-3.5 text-xs font-medium tracking-[0.18em] text-white uppercase transition hover:bg-neutral-800"
 				>
-					Shop Now <Icon name="arrow-right" size={16} />
+					Shop Now <Icon name="arrow-right" class="h-4 w-4" />
 				</a>
 			</div>
 			<!-- Right-side note, desktop only -->
@@ -46,7 +46,7 @@
 		<div class="flex items-end justify-between gap-4">
 			<h2 class="text-3xl font-extralight tracking-[0.05em] uppercase sm:text-4xl md:text-5xl">Ready-to-wear</h2>
 			<a href="#smartphones" class="mb-1 flex shrink-0 items-center gap-2 text-[11px] font-medium tracking-[0.16em] uppercase hover:opacity-60">
-				See more <Icon name="arrow-right" size={14} />
+				See more <Icon name="arrow-right" class="h-3.5 w-3.5" />
 			</a>
 		</div>
 		<div class="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-4 md:gap-x-6">
@@ -74,7 +74,7 @@
 					New<br />Collection
 				</h2>
 				<a href="#smartphones" class="mb-1 flex shrink-0 items-center gap-2 text-[11px] font-medium tracking-[0.16em] uppercase hover:opacity-60">
-					See more <Icon name="arrow-right" size={14} />
+					See more <Icon name="arrow-right" class="h-3.5 w-3.5" />
 				</a>
 			</div>
 			<p class="mt-6 max-w-md text-sm leading-relaxed text-muted md:text-base">
@@ -99,7 +99,7 @@
 		<div class="flex items-end justify-between gap-4">
 			<h2 class="text-3xl font-extralight tracking-[0.05em] uppercase sm:text-4xl md:text-5xl">Smartphones for you</h2>
 			<a href="#ready-to-wear" class="mb-1 flex shrink-0 items-center gap-2 text-[11px] font-medium tracking-[0.16em] uppercase hover:opacity-60">
-				See more <Icon name="arrow-right" size={14} />
+				See more <Icon name="arrow-right" class="h-3.5 w-3.5" />
 			</a>
 		</div>
 		<div class="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-4 md:gap-x-6">

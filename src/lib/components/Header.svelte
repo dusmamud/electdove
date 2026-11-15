@@ -1,19 +1,53 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Icon from './Icon.svelte';
-	import { cart, showToast } from '../data/cart.svelte';
+	import { products, formatPrice } from '../data/products';
+	import { shop } from '../data/store.svelte';
 
 	const links: { label: string; href: string }[] = [
-		{ label: 'Home', href: '#top' },
-		{ label: 'Devices', href: '#smartphones' },
-		{ label: 'Audio', href: '#ready-to-wear' },
-		{ label: 'Cameras', href: '#collection' },
-		{ label: 'Brands', href: '#ready-to-wear' },
-		{ label: 'New', href: '#ready-to-wear' }
+		{ label: 'Home', href: '/' },
+		{ label: 'Shop', href: '/shop' },
+		{ label: 'Categories', href: '/categories' },
+		{ label: 'Deals', href: '/deals' },
+		{ label: 'Blog', href: '/blog' },
+		{ label: 'Contact', href: '/contact' }
 	];
 
 	let menuOpen = $state(false);
 	let searchOpen = $state(false);
 	let query = $state('');
+	let searchInput: HTMLInputElement | undefined = $state();
+
+	const suggestions = $derived(
+		query.trim().length >= 2
+			? products
+					.filter((p) => p.name.toLowerCase().includes(query.trim().toLowerCase()))
+					.slice(0, 5)
+			: []
+	);
+
+	function toggleSearch() {
+		searchOpen = !searchOpen;
+		if (searchOpen) {
+			// Focus the input once the panel is in the DOM.
+			requestAnimationFrame(() => searchInput?.focus());
+		}
+	}
+
+	function submitSearch() {
+		if (query.trim()) goto(`/shop?q=${encodeURIComponent(query.trim())}`);
+		searchOpen = false;
+	}
+
+	function pickSuggestion(id: number) {
+		searchOpen = false;
+		query = '';
+		goto(`/product/${id}`);
+	}
+
+	function onSearchKeydown(e: KeyboardEvent) {
+		if (e.key === 'Escape') searchOpen = false;
+	}
 </script>
 
 <!-- Top announcement bar -->
@@ -22,8 +56,8 @@
 		<span class="hidden md:block">Free shipping worldwide</span>
 		<span class="mx-auto md:mx-0">Up to 10% off on selected tech. Limited time only.</span>
 		<span class="hidden gap-5 md:flex">
-			<a href="#contact" class="hover:opacity-70">Contact</a>
-			<a href="#about" class="hover:opacity-70">About</a>
+			<a href="/contact" class="hover:opacity-70">Contact</a>
+			<a href="/about" class="hover:opacity-70">About</a>
 		</span>
 	</div>
 </div>
@@ -38,7 +72,7 @@
 				aria-label={menuOpen ? 'Close menu' : 'Open menu'}
 				onclick={() => (menuOpen = !menuOpen)}
 			>
-				<Icon name={menuOpen ? 'close' : 'menu'} size={22} />
+				<Icon name={menuOpen ? 'close' : 'menu'} class="h-[22px] w-[22px]" />
 			</button>
 			<nav class="hidden items-center gap-6 text-[11px] font-medium tracking-[0.18em] uppercase md:flex" aria-label="Primary">
 				{#each links as link}
@@ -52,61 +86,82 @@
 
 		<!-- Right: icons -->
 		<div class="flex flex-1 items-center justify-end gap-1 sm:gap-2">
-			<button class="p-2 hover:opacity-60" aria-label="Search" onclick={() => (searchOpen = !searchOpen)}>
-				<Icon name="search" size={20} />
+			<button class="p-2 hover:opacity-60" aria-label="Search" onclick={toggleSearch}>
+				<Icon name="search" class="h-5 w-5" />
 			</button>
-			<button
-				class="hidden p-2 hover:opacity-60 sm:block"
-				aria-label="Account"
-				onclick={() => showToast('Account sign-in is coming soon')}
-			>
-				<Icon name="user" size={20} />
-			</button>
+			<a href={shop.user ? '/account' : '/login'} class="hidden p-2 hover:opacity-60 sm:block" aria-label="Account">
+				<Icon name="user" class="h-5 w-5" />
+			</a>
 			<button
 				class="relative p-2 hover:opacity-60"
-				aria-label="Shopping bag"
-				onclick={() =>
-					showToast(
-						cart.count > 0
-							? `${cart.count} item${cart.count > 1 ? 's' : ''} in your bag`
-							: 'Your bag is empty — tap Add to bag on a product'
-					)}
+				aria-label="Shopping bag, {shop.cartCount} items"
+				onclick={() => shop.openCart()}
 			>
-				<Icon name="bag" size={20} />
-				{#if cart.count > 0}
-					<span class="absolute top-0 right-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-black px-1 text-[10px] font-medium text-white">{cart.count}</span>
+				<Icon name="bag" class="h-5 w-5" />
+				{#if shop.cartCount > 0}
+					<span class="absolute top-0 right-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-black px-1 text-[10px] font-medium text-white">{shop.cartCount}</span>
 				{/if}
 			</button>
-			<button
-				class="hidden p-2 hover:opacity-60 sm:block"
-				aria-label="Wishlist"
-				onclick={() => showToast('Wishlist is coming soon')}
-			>
-				<Icon name="heart" size={20} />
-			</button>
+			<a href="/wishlist" class="relative hidden p-2 hover:opacity-60 sm:block" aria-label="Wishlist">
+				<Icon name="heart" class="h-5 w-5" />
+				{#if shop.wishlistCount > 0}
+					<span class="absolute top-0 right-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-black px-1 text-[10px] font-medium text-white">{shop.wishlistCount}</span>
+				{/if}
+			</a>
 		</div>
 	</div>
 
-	<!-- Expanding search -->
+	<!-- Expanding search with live suggestions -->
 	{#if searchOpen}
 		<div class="border-t border-line px-4 py-3 sm:px-6">
 			<form
 				class="mx-auto flex max-w-xl items-center gap-3"
 				onsubmit={(e) => {
 					e.preventDefault();
-					searchOpen = false;
+					submitSearch();
 				}}
 			>
-				<Icon name="search" size={18} />
+				<Icon name="search" class="h-[18px] w-[18px] shrink-0" />
 				<input
+					bind:this={searchInput}
 					bind:value={query}
 					type="search"
 					placeholder="Search devices, audio, cameras…"
 					class="w-full bg-transparent text-sm outline-none placeholder:text-neutral-400"
 					aria-label="Search products"
+					onkeydown={onSearchKeydown}
 				/>
 				<button type="button" class="text-sm text-neutral-500" onclick={() => (searchOpen = false)}>Cancel</button>
 			</form>
+			{#if suggestions.length > 0}
+				<ul class="mx-auto mt-2 max-w-xl divide-y divide-line overflow-hidden rounded-xl border border-line bg-white shadow-lg" role="listbox" aria-label="Search suggestions">
+					{#each suggestions as p (p.id)}
+						<li>
+							<button
+								type="button"
+								role="option"
+								aria-selected="false"
+								onclick={() => pickSuggestion(p.id)}
+								class="flex w-full items-center gap-3 px-3 py-2.5 text-left transition hover:bg-mist"
+							>
+								<img src={p.src} alt="" class="h-10 w-10 shrink-0 rounded-lg object-cover" />
+								<span class="min-w-0 flex-1">
+									<span class="block truncate text-sm font-medium text-ink">{p.name}</span>
+									<span class="block text-xs text-stone-500">{p.category}</span>
+								</span>
+								<span class="text-sm font-bold text-ink">{formatPrice(p.price)}</span>
+							</button>
+						</li>
+					{/each}
+				</ul>
+			{:else if query.trim().length >= 2}
+				<p class="mx-auto mt-2 max-w-xl text-sm text-stone-500">
+					No products match “{query.trim()}”.
+					<button type="button" class="font-semibold text-black underline underline-offset-2" onclick={submitSearch}>
+						Search anyway
+					</button>
+				</p>
+			{/if}
 		</div>
 	{/if}
 
@@ -122,9 +177,12 @@
 					{link.label}
 				</a>
 			{/each}
-			<div class="flex gap-6 py-3 text-xs font-medium tracking-[0.2em] uppercase">
-				<a href="#contact" onclick={() => (menuOpen = false)}>Contact</a>
-				<a href="#about" onclick={() => (menuOpen = false)}>About</a>
+			<div class="flex flex-wrap gap-x-6 gap-y-2 py-3 text-xs font-medium tracking-[0.2em] uppercase">
+				<a href={shop.user ? '/account' : '/login'} onclick={() => (menuOpen = false)}>Account</a>
+				<a href="/wishlist" onclick={() => (menuOpen = false)}>Wishlist</a>
+				<a href="/orders" onclick={() => (menuOpen = false)}>Orders</a>
+				<a href="/track-order" onclick={() => (menuOpen = false)}>Track Order</a>
+				<a href="/about" onclick={() => (menuOpen = false)}>About</a>
 			</div>
 		</nav>
 	{/if}
