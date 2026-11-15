@@ -14,7 +14,7 @@
 </script>
 
 {#if visible}
-	<div class="animate-toast-in fixed bottom-6 left-1/2 z-50 -translate-x-1/2 bg-black px-5 py-3 text-xs font-medium tracking-wide whitespace-nowrap text-white shadow-lg">
+	<div class="animate-toast-in fixed bottom-6 left-1/2 z-50 max-w-[calc(100vw-2rem)] -translate-x-1/2 bg-black px-5 py-3 text-center text-xs font-medium tracking-wide text-white shadow-lg">
 		{toast.message}
 	</div>
 {/if}
