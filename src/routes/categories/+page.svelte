@@ -30,7 +30,7 @@
 					<div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/0 to-black/0"></div>
 					<span class="absolute bottom-3 left-4 text-lg font-extrabold text-white drop-shadow">{cat.name}</span>
 				</div>
-				<div class="flex items-center justify-between px-4 py-3.5 sm:px-5">
+				<div class="flex flex-col items-start gap-0.5 px-4 py-3.5 sm:flex-row sm:items-center sm:justify-between sm:gap-2 sm:px-5">
 					<span class="text-sm text-stone-500">
 						{#if count > 0}
 							{count} product{count === 1 ? '' : 's'}

@@ -4,6 +4,13 @@
 	import { formatPrice, type Product } from '../data/products';
 
 	const { product }: { product: Product } = $props();
+
+	let added = $state(false);
+	function addToBag() {
+		shop.addToCart(product.id, 1, { openDrawer: false });
+		added = true;
+		setTimeout(() => (added = false), 1600);
+	}
 </script>
 
 <article class="group">
@@ -17,7 +24,7 @@
 			/>
 		</a>
 		{#if product.tag}
-			<span class="absolute top-3 left-3 bg-black px-2 py-1 text-[11px] font-medium tracking-[0.14em] text-white uppercase">{product.tag}</span>
+			<span class="absolute bottom-3 left-3 bg-black px-2 py-1 text-[11px] font-medium tracking-[0.14em] text-white uppercase md:top-3 md:bottom-auto">{product.tag}</span>
 		{/if}
 		<button
 			type="button"
@@ -38,14 +45,14 @@
 			Quick view
 		</button>
 		<button
-			class="absolute right-3 bottom-3 flex min-h-11 items-center gap-2 bg-black px-4 py-3 text-[11px] font-medium tracking-[0.12em] text-white uppercase opacity-0 transition-opacity duration-300 group-hover:opacity-100 max-md:opacity-100"
-			onclick={() => shop.addToCart(product.id, 1, { openDrawer: false })}
+			class="absolute right-3 bottom-3 hidden min-h-11 items-center gap-2 bg-black px-4 py-3 text-[11px] font-medium tracking-[0.12em] text-white uppercase opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:flex"
+			onclick={addToBag}
 			aria-label="Add {product.name} to bag"
 		>
 			Add to bag
 		</button>
 	</div>
-	<h3 class="mt-4 text-xs font-medium tracking-[0.14em] uppercase md:text-sm">
+	<h3 class="mt-4 text-xs font-medium tracking-[0.14em] uppercase text-balance md:text-sm">
 		<a href="/product/{product.id}" class="hover:opacity-60">{product.name}</a>
 	</h3>
 	<p class="mt-1 text-xs text-muted md:text-sm">
@@ -54,4 +61,15 @@
 			<span class="ml-1.5 text-stone-400 line-through">{formatPrice(product.oldPrice)}</span>
 		{/if}
 	</p>
+	<button
+		type="button"
+		onclick={addToBag}
+		aria-label="Add {product.name} to bag"
+		class="press mt-3 flex min-h-11 w-full items-center justify-center gap-2 rounded-lg px-3 py-3 text-[11px] font-semibold tracking-[0.12em] uppercase transition md:hidden {added
+			? 'bg-black text-white'
+			: 'border border-line bg-white text-ink hover:border-black'}"
+	>
+		<Icon name={added ? 'check' : 'cart'} class="h-4 w-4" />
+		{added ? 'Added to Bag' : 'Add to Bag'}
+	</button>
 </article>
