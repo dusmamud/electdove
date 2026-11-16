@@ -48,7 +48,7 @@ export const products: Product[] = [
 		stock: 12,
 		desc: 'Titanium design, A17 Pro chip and a 48MP Pro camera system. The lightest Pro iPhone ever, with a USB-C port, Action Button and all-day battery life.',
 		src: '/phone-iphone15pro.webp',
-		images: ['/phone-iphone15pro.webp'],
+		images: ['/phone-iphone15pro.webp', '/iphone-15-pro-back.webp', '/iphone-15-pro-side.webp', '/iphone-15-pro-camera.webp'],
 		highlights: [
 			'A17 Pro chip — the fastest chip in a smartphone',
 			'Aerospace-grade titanium, just 187 g',

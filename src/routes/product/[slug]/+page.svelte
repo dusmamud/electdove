@@ -225,6 +225,15 @@
 		activeImg = (activeImg + delta + n) % n;
 	}
 
+	let touchStartX = 0;
+	function onGalleryTouchStart(e: TouchEvent) {
+		touchStartX = e.changedTouches[0].clientX;
+	}
+	function onGalleryTouchEnd(e: TouchEvent) {
+		const dx = e.changedTouches[0].clientX - touchStartX;
+		if (Math.abs(dx) > 50) stepImage(dx < 0 ? 1 : -1);
+	}
+
 	function addToCart() {
 		if (!product) return;
 		shop.addToCart(product.id, qty, { variant: selectedVariant });
@@ -325,19 +334,27 @@
 
 		<div class="mt-5 grid gap-8 lg:grid-cols-2">
 			<!-- Gallery -->
-			<div class="min-w-0">
-				<div class="group relative overflow-hidden rounded-2xl border border-line bg-mist">
+			<div class="flex min-w-0 flex-col gap-3 lg:sticky lg:top-24 lg:flex-row lg:self-start">
+				<div
+					role="region"
+					aria-label="Product images — swipe to view more"
+					class="group relative min-w-0 overflow-hidden rounded-2xl border border-line bg-mist lg:order-2 lg:flex-1"
+					ontouchstart={onGalleryTouchStart}
+					ontouchend={onGalleryTouchEnd}
+				>
 					<button
 						type="button"
 						onclick={() => (lightbox = true)}
 						aria-label="View larger image"
 						class="block aspect-square w-full cursor-zoom-in"
 					>
-						<img
-							src={images[activeImg] ?? product.src}
-							alt={product.name}
-							class="aspect-square w-full object-cover"
-						/>
+						{#key images[activeImg]}
+							<img
+								src={images[activeImg] ?? product.src}
+								alt={product.name}
+								class="aspect-square w-full animate-fade-in object-cover"
+							/>
+						{/key}
 					</button>
 					{#if images.length > 1}
 						<button
@@ -369,20 +386,27 @@
 							{savePct}% OFF
 						</span>
 					{/if}
+					{#if images.length > 1}
+						<span
+							class="absolute top-3 right-3 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white"
+						>
+							{activeImg + 1} / {images.length}
+						</span>
+					{/if}
 				</div>
 				{#if images.length > 1}
-					<div class="mt-3 flex gap-3">
+					<div class="flex gap-3 overflow-x-auto pb-1 lg:order-1 lg:w-20 lg:flex-col lg:overflow-visible lg:pb-0">
 						{#each images as src, i (src)}
 							<button
 								type="button"
 								onclick={() => (activeImg = i)}
-								aria-label="View image {i + 1}"
+								aria-label="View image {i + 1} of {images.length}"
 								aria-pressed={activeImg === i}
-								class="h-20 w-20 overflow-hidden rounded-xl border-2 transition {activeImg === i
+								class="h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 transition {activeImg === i
 									? 'border-black'
 									: 'border-line opacity-70 hover:opacity-100'}"
 							>
-								<img src={src} alt="" class="h-full w-full object-cover" />
+								<img src={src} alt="" loading="lazy" class="h-full w-full object-cover" />
 							</button>
 						{/each}
 					</div>
@@ -1077,7 +1101,15 @@
 
 	<!-- Image lightbox -->
 	{#if lightbox}
-		<div class="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="{product.name} — image {activeImg + 1} of {images.length}">
+		<div
+			class="fixed inset-0 z-[70] flex items-center justify-center p-4"
+			tabindex="-1"
+			role="dialog"
+			aria-modal="true"
+			aria-label="{product.name} — image {activeImg + 1} of {images.length}"
+			ontouchstart={onGalleryTouchStart}
+			ontouchend={onGalleryTouchEnd}
+		>
 			<button
 				type="button"
 				aria-label="Close image viewer"
@@ -1116,6 +1148,23 @@
 				alt={product.name}
 				class="relative max-h-[85vh] max-w-full rounded-2xl object-contain shadow-2xl"
 			/>
+			{#if images.length > 1}
+				<div class="absolute bottom-12 left-1/2 z-10 flex max-w-[92vw] -translate-x-1/2 gap-2 overflow-x-auto pb-1">
+					{#each images as src, i (src)}
+						<button
+							type="button"
+							onclick={() => (activeImg = i)}
+							aria-label="View image {i + 1} of {images.length}"
+							aria-pressed={activeImg === i}
+							class="h-14 w-14 shrink-0 overflow-hidden rounded-lg border-2 transition {activeImg === i
+								? 'border-white'
+								: 'border-white/30 opacity-70 hover:opacity-100'}"
+						>
+							<img src={src} alt="" loading="lazy" class="h-full w-full object-cover" />
+						</button>
+					{/each}
+				</div>
+			{/if}
 			<span class="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white">
 				{activeImg + 1} / {images.length}
 			</span>
