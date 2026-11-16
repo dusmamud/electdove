@@ -16,7 +16,7 @@
 	<div class="absolute inset-0">
 		<div class="mx-auto flex h-full max-w-7xl flex-col justify-center px-4 sm:px-6">
 			<div class="animate-fade-up max-w-md pt-10">
-				<h1 class="text-5xl leading-[0.95] font-extralight tracking-[0.04em] text-white uppercase sm:text-6xl md:text-7xl">
+				<h1 class="text-display font-extralight tracking-[0.04em] text-white uppercase text-balance">
 					New<br />Collection
 				</h1>
 				<a
@@ -44,12 +44,12 @@
 <section id="ready-to-wear" class="bg-mist">
 	<div class="mx-auto max-w-7xl px-4 pt-12 pb-16 sm:px-6 md:pt-16 md:pb-20">
 		<div class="flex items-end justify-between gap-4">
-			<h2 class="text-3xl font-extralight tracking-[0.05em] uppercase sm:text-4xl md:text-5xl">Ready-to-wear</h2>
+			<h2 class="text-h1 font-extralight tracking-[0.05em] uppercase text-balance">Ready-to-wear</h2>
 			<a href="#smartphones" class="mb-1 flex shrink-0 items-center gap-2 text-[11px] font-medium tracking-[0.16em] uppercase hover:opacity-60">
 				See more <Icon name="arrow-right" class="h-3.5 w-3.5" />
 			</a>
 		</div>
-		<div class="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-4 md:gap-x-6">
+		<div class="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 xl:grid-cols-4">
 			{#each readyToWear as product}
 				<ProductCard {product} />
 			{/each}
@@ -70,7 +70,7 @@
 		</div>
 		<div class="flex flex-col">
 			<div class="flex items-end justify-between gap-4">
-				<h2 class="text-3xl leading-[1.05] font-extralight tracking-[0.05em] uppercase sm:text-4xl md:text-5xl">
+				<h2 class="text-h1 leading-[1.05] font-extralight tracking-[0.05em] uppercase text-balance">
 					New<br />Collection
 				</h2>
 				<a href="#smartphones" class="mb-1 flex shrink-0 items-center gap-2 text-[11px] font-medium tracking-[0.16em] uppercase hover:opacity-60">
@@ -97,12 +97,12 @@
 <section id="smartphones" class="bg-mist">
 	<div class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 md:pb-24">
 		<div class="flex items-end justify-between gap-4">
-			<h2 class="text-3xl font-extralight tracking-[0.05em] uppercase sm:text-4xl md:text-5xl">Smartphones for you</h2>
+			<h2 class="text-h1 font-extralight tracking-[0.05em] uppercase text-balance">Smartphones for you</h2>
 			<a href="#ready-to-wear" class="mb-1 flex shrink-0 items-center gap-2 text-[11px] font-medium tracking-[0.16em] uppercase hover:opacity-60">
 				See more <Icon name="arrow-right" class="h-3.5 w-3.5" />
 			</a>
 		</div>
-		<div class="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-4 md:gap-x-6">
+		<div class="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 xl:grid-cols-4">
 			{#each smartphones as product}
 				<ProductCard {product} />
 			{/each}

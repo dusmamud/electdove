@@ -47,7 +47,7 @@
 		<span class="font-medium text-ink">Shipping Policy</span>
 	</nav>
 
-	<h1 class="mt-4 text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">Shipping Policy</h1>
+	<h1 class="mt-4 text-title font-extrabold tracking-tight text-ink">Shipping Policy</h1>
 	<p class="mt-4 text-base leading-relaxed text-stone-600">
 		Shipping is simple at Electdove: one flat fee, free over ₹499, and delivery in 3–4 business days.
 		The exact cost and date are always shown before you pay — there are no surprises at checkout.

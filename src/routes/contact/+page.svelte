@@ -42,7 +42,7 @@
 </svelte:head>
 
 <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-	<h1 class="text-xl font-extrabold tracking-tight text-ink sm:text-2xl">Contact Us</h1>
+	<h1 class="text-title font-extrabold tracking-tight text-ink">Contact Us</h1>
 	<p class="mt-1 text-sm text-stone-500">Questions about an order, a return or a product? We're here to help.</p>
 
 	<div class="mt-8 grid gap-6 lg:grid-cols-5">

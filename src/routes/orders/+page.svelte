@@ -24,7 +24,7 @@
 </svelte:head>
 
 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-	<h1 class="text-xl font-extrabold tracking-tight text-ink sm:text-2xl">My Orders</h1>
+	<h1 class="text-title font-extrabold tracking-tight text-ink">My Orders</h1>
 
 	{#if !shop.user}
 		<div class="mt-6 rounded-2xl border border-line bg-white p-8 text-center shadow-[0_2px_12px_rgba(0,0,0,0.04)]">

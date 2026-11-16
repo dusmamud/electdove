@@ -74,7 +74,7 @@
 		<span class="font-medium text-ink">Terms of Service</span>
 	</nav>
 
-	<h1 class="mt-4 text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">Terms of Service</h1>
+	<h1 class="mt-4 text-title font-extrabold tracking-tight text-ink">Terms of Service</h1>
 	<p class="mt-2 text-sm text-stone-500">Last updated: November 15, 2026</p>
 	<p class="mt-4 text-base leading-relaxed text-stone-600">
 		These terms govern your use of Electdove. Please read them — they are written in plain language

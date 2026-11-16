@@ -52,9 +52,9 @@
 
 <!-- Top announcement bar -->
 <div class="bg-black text-white">
-	<div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-[10px] tracking-[0.14em] uppercase sm:px-6">
+	<div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-[11px] tracking-[0.14em] uppercase sm:px-6">
 		<span class="hidden md:block">Free shipping across India</span>
-		<span class="mx-auto md:mx-0">Up to 10% off on selected tech. Limited time only.</span>
+		<span class="mx-auto md:mx-0"><span class="sm:hidden">Up to 10% off — limited time only.</span><span class="hidden sm:inline">Up to 10% off on selected tech. Limited time only.</span></span>
 		<span class="hidden gap-5 md:flex">
 			<a href="/contact" class="hover:opacity-70">Contact</a>
 			<a href="/about" class="hover:opacity-70">About</a>
@@ -68,13 +68,13 @@
 		<!-- Left: hamburger (mobile) + nav links (desktop) -->
 		<div class="flex flex-1 items-center gap-2">
 			<button
-				class="p-2 -ml-2 md:hidden"
+				class="flex h-11 w-11 -ml-2 items-center justify-center lg:hidden"
 				aria-label={menuOpen ? 'Close menu' : 'Open menu'}
 				onclick={() => (menuOpen = !menuOpen)}
 			>
 				<Icon name={menuOpen ? 'close' : 'menu'} class="h-[22px] w-[22px]" />
 			</button>
-			<nav class="hidden items-center gap-6 text-[11px] font-medium tracking-[0.18em] uppercase md:flex" aria-label="Primary">
+			<nav class="hidden items-center gap-6 text-[11px] font-medium tracking-[0.18em] uppercase lg:flex" aria-label="Primary">
 				{#each links as link}
 					<a href={link.href} class="hover:opacity-60">{link.label}</a>
 				{/each}
@@ -82,18 +82,18 @@
 		</div>
 
 		<!-- Centre: logo -->
-		<a href="/" class="text-xl font-light tracking-[0.32em] uppercase md:text-2xl">Electdove</a>
+		<a href="/" class="text-xl font-light tracking-[0.32em] uppercase lg:text-2xl">Electdove</a>
 
 		<!-- Right: icons -->
 		<div class="flex flex-1 items-center justify-end gap-1 sm:gap-2">
-			<button class="p-2 hover:opacity-60" aria-label="Search" onclick={toggleSearch}>
+			<button class="flex h-11 w-11 items-center justify-center hover:opacity-60" aria-label="Search" onclick={toggleSearch}>
 				<Icon name="search" class="h-5 w-5" />
 			</button>
-			<a href={shop.user ? '/account' : '/login'} class="hidden p-2 hover:opacity-60 sm:block" aria-label="Account">
+			<a href={shop.user ? '/account' : '/login'} class="hidden h-11 w-11 items-center justify-center hover:opacity-60 sm:flex" aria-label="Account">
 				<Icon name="user" class="h-5 w-5" />
 			</a>
 			<button
-				class="relative p-2 hover:opacity-60"
+				class="relative flex h-11 w-11 items-center justify-center hover:opacity-60"
 				aria-label="Shopping bag, {shop.cartCount} items"
 				onclick={() => shop.openCart()}
 			>
@@ -102,7 +102,7 @@
 					<span class="absolute top-0 right-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-black px-1 text-[10px] font-medium text-white">{shop.cartCount}</span>
 				{/if}
 			</button>
-			<a href="/wishlist" class="relative hidden p-2 hover:opacity-60 sm:block" aria-label="Wishlist">
+			<a href="/wishlist" class="relative hidden h-11 w-11 items-center justify-center hover:opacity-60 sm:flex" aria-label="Wishlist">
 				<Icon name="heart" class="h-5 w-5" />
 				{#if shop.wishlistCount > 0}
 					<span class="absolute top-0 right-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-black px-1 text-[10px] font-medium text-white">{shop.wishlistCount}</span>
@@ -167,7 +167,7 @@
 
 	<!-- Mobile menu -->
 	{#if menuOpen}
-		<nav class="border-t border-line px-4 py-2 md:hidden" aria-label="Mobile">
+		<nav class="border-t border-line px-4 py-2 lg:hidden" aria-label="Mobile">
 			{#each links as link}
 				<a
 					href={link.href}

@@ -25,7 +25,7 @@
 		<span class="font-medium text-ink">Blog</span>
 	</nav>
 
-	<h1 class="mt-4 text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">Shopping Guides &amp; Tips</h1>
+	<h1 class="mt-4 text-title font-extrabold tracking-tight text-ink">Shopping Guides &amp; Tips</h1>
 	<p class="mt-2 max-w-2xl text-sm leading-relaxed text-stone-500 sm:text-base">
 		Short, practical guides to help you buy better — no jargon, no sponsored picks, just what
 		we have learned from the products we sell.

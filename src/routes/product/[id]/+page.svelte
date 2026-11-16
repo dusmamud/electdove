@@ -299,7 +299,7 @@
 {#if !product}
 	<div class="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 lg:px-8">
 		<Icon name="alert" class="mx-auto h-12 w-12 text-stone-300" />
-		<h1 class="mt-4 text-2xl font-extrabold tracking-tight text-ink">Product not found</h1>
+		<h1 class="mt-4 text-title font-extrabold tracking-tight text-ink">Product not found</h1>
 		<p class="mt-2 text-sm text-stone-500">This product does not exist or was removed.</p>
 		<a
 			href="/shop"
@@ -389,7 +389,7 @@
 			<!-- Buy box -->
 			<div class="min-w-0">
 				<p class="text-xs font-bold tracking-widest text-black uppercase">{product.category}</p>
-				<h1 class="mt-2 text-[1.4rem] leading-tight font-extrabold tracking-tight text-ink sm:text-3xl">
+				<h1 class="mt-2 text-pdp font-extrabold tracking-tight text-ink">
 					{product.name}
 				</h1>
 				<button
@@ -403,7 +403,7 @@
 				</button>
 
 				<p class="mt-4 flex flex-wrap items-baseline gap-3">
-					<span class="text-3xl font-extrabold text-ink">{formatPrice(unitPrice)}</span>
+					<span class="text-pdp font-extrabold text-ink">{formatPrice(unitPrice)}</span>
 					<span class="text-base text-stone-400 line-through"
 						>{formatPrice(product.oldPrice)}</span
 					>
@@ -660,7 +660,7 @@
 
 		<!-- Tabs: Description / Specifications / Reviews / Q&A -->
 		<section class="mt-12" use:reveal>
-			<div class="no-scrollbar flex gap-1 overflow-x-auto border-b border-line" role="tablist" aria-label="Product information">
+			<div class="no-scrollbar flex gap-1 overflow-x-auto border-b border-line [mask-image:linear-gradient(to_right,black_88%,transparent)]" role="tablist" aria-label="Product information">
 				{#each [['description', 'Description'], ['specs', 'Specifications'], ['reviews', `Reviews (${product.reviews + (allReviews.length - product.seedReviews.length)})`], ['qa', 'Q&A']] as [key, label] (key)}
 					<button
 						type="button"
@@ -913,7 +913,7 @@
 
 		{#if recent.length > 0}
 			<section class="mt-12">
-				<h2 class="text-xl font-extrabold tracking-tight text-ink sm:text-2xl">Recently Viewed</h2>
+				<h2 class="text-title font-extrabold tracking-tight text-ink">Recently Viewed</h2>
 				<div class="mt-6 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
 					{#each recent as item (item.id)}
 						<article class="group overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-xl">
@@ -939,7 +939,7 @@
 
 		{#if related.length > 0}
 			<section class="mt-14" use:reveal>
-				<h2 class="text-xl font-extrabold tracking-tight text-ink sm:text-2xl">You May Also Like</h2>
+				<h2 class="text-title font-extrabold tracking-tight text-ink">You May Also Like</h2>
 				<div class="mt-6 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
 					{#each related as rel (rel.id)}
 						<article class="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-xl">

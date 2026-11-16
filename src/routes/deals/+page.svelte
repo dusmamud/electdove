@@ -65,7 +65,7 @@
 		<p class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-[11px] font-bold tracking-widest text-black uppercase shadow-sm">
 			<Icon name="tag" class="h-3.5 w-3.5" /> Limited Time
 		</p>
-		<h1 class="mt-4 text-3xl leading-tight font-extrabold tracking-tight text-ink sm:text-5xl">Up to 50% Off</h1>
+		<h1 class="mt-4 text-display leading-tight font-extrabold tracking-tight text-ink text-balance">Up to 50% Off</h1>
 		<p class="mx-auto mt-3 max-w-md text-sm leading-relaxed text-stone-500 sm:text-base">
 			Big savings on our best sellers — but hurry, these deals end at midnight tonight.
 		</p>
@@ -95,7 +95,7 @@
 	</div>
 
 	<!-- Deals grid -->
-	<h2 class="mt-10 text-xl font-extrabold tracking-tight text-ink sm:text-2xl">Today's Best Deals</h2>
+	<h2 class="mt-10 text-title font-extrabold tracking-tight text-ink">Today's Best Deals</h2>
 	<div class="mt-6 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3 xl:grid-cols-5">
 		{#each deals as product, i (product.id)}
 			<article style="--i: {i}" class="card-in group flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-xl">

@@ -125,7 +125,7 @@
 			<div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-neutral-100 text-black">
 				<Icon name="user" class="h-7 w-7" />
 			</div>
-			<h1 class="mt-4 text-xl font-extrabold tracking-tight text-ink sm:text-2xl">You're not logged in</h1>
+			<h1 class="mt-4 text-title font-extrabold tracking-tight text-ink">You're not logged in</h1>
 			<p class="mt-2 text-sm leading-relaxed text-stone-500">
 				Log in to see your profile, orders and saved items — or create a free account to get started.
 			</p>
@@ -146,7 +146,7 @@
 			<p class="mt-5 text-xs text-stone-400">Demo store — accounts are saved only on this device.</p>
 		</div>
 	{:else}
-		<h1 class="text-xl font-extrabold tracking-tight text-ink sm:text-2xl">My Account</h1>
+		<h1 class="text-title font-extrabold tracking-tight text-ink">My Account</h1>
 
 		<!-- Profile card -->
 		<div class="mt-6 flex flex-col gap-5 rounded-2xl border border-line bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] sm:flex-row sm:items-center sm:justify-between">

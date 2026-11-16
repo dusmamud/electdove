@@ -51,7 +51,7 @@
 </svelte:head>
 
 <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-	<h1 class="text-xl font-extrabold tracking-tight text-ink sm:text-2xl">Help Center</h1>
+	<h1 class="text-title font-extrabold tracking-tight text-ink">Help Center</h1>
 	<p class="mt-1 text-sm text-stone-500">Shipping, returns and answers to the questions we hear most.</p>
 
 	<!-- Policy cards -->
@@ -84,7 +84,7 @@
 	</div>
 
 	<!-- FAQ accordion -->
-	<h2 class="mt-10 text-xl font-extrabold tracking-tight text-ink sm:text-2xl">Frequently Asked Questions</h2>
+	<h2 class="mt-10 text-title font-extrabold tracking-tight text-ink">Frequently Asked Questions</h2>
 	<div class="mt-5 space-y-3">
 		{#each faqs as faq, i (faq.q)}
 			<div class="overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)]">

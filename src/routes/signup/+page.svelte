@@ -67,7 +67,7 @@
 			<div class="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-100 text-black">
 				<Icon name="user" class="h-6 w-6" />
 			</div>
-			<h1 class="mt-4 text-xl font-extrabold tracking-tight text-ink sm:text-2xl">Create your account</h1>
+			<h1 class="mt-4 text-title font-extrabold tracking-tight text-ink">Create your account</h1>
 			<p class="mt-1 text-sm text-stone-500">Join Electdove for faster checkout, order tracking and saved favourites.</p>
 
 			{#if serverError}

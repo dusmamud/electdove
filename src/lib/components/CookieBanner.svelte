@@ -41,14 +41,14 @@
 				<button
 					type="button"
 					onclick={() => choose('accepted')}
-					class="press flex-1 rounded-lg bg-black px-4 py-2 text-sm font-semibold text-white transition hover:bg-neutral-900 sm:py-2.5"
+					class="press flex-1 rounded-lg bg-black px-4 py-3 text-sm font-semibold text-white transition hover:bg-neutral-900"
 				>
 					Accept
 				</button>
 				<button
 					type="button"
 					onclick={() => choose('declined')}
-					class="press flex-1 rounded-lg border border-line bg-white px-4 py-2 text-sm font-semibold text-ink transition hover:border-black sm:py-2.5"
+					class="press flex-1 rounded-lg border border-line bg-white px-4 py-3 text-sm font-semibold text-ink transition hover:border-black"
 				>
 					Decline
 				</button>

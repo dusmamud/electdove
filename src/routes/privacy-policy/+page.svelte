@@ -59,7 +59,7 @@
 		<span class="font-medium text-ink">Privacy Policy</span>
 	</nav>
 
-	<h1 class="mt-4 text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">Privacy Policy</h1>
+	<h1 class="mt-4 text-title font-extrabold tracking-tight text-ink">Privacy Policy</h1>
 	<p class="mt-2 text-sm text-stone-500">Last updated: November 15, 2026</p>
 	<p class="mt-4 text-base leading-relaxed text-stone-600">
 		Electdove is a demo store, and our privacy approach is simple: your information stays on your

@@ -23,7 +23,7 @@
 	{#if !order}
 		<div class="rounded-2xl border border-line bg-white p-8 text-center shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
 			<Icon name="alert" class="mx-auto h-12 w-12 text-stone-300" />
-			<h1 class="mt-4 text-xl font-extrabold tracking-tight text-ink">We couldn't find that order</h1>
+			<h1 class="mt-4 text-title font-extrabold tracking-tight text-ink">We couldn't find that order</h1>
 			<p class="mt-2 text-sm text-stone-500">
 				The order ID may be mistyped, or this order was placed on another device.
 			</p>
@@ -38,7 +38,7 @@
 			<span class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-neutral-100">
 				<Icon name="check-circle" class="h-11 w-11 text-black" />
 			</span>
-			<h1 class="mt-5 text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
+			<h1 class="mt-5 text-title font-extrabold tracking-tight text-ink">
 				Order placed successfully!
 			</h1>
 			<p class="mt-2 text-sm text-stone-500">

@@ -10,7 +10,7 @@
 </svelte:head>
 
 <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-	<h1 class="text-xl font-extrabold tracking-tight text-ink sm:text-2xl">Shop by Category</h1>
+	<h1 class="text-title font-extrabold tracking-tight text-ink">Shop by Category</h1>
 	<p class="mt-1 text-sm text-stone-500">Browse our collections — pick a category to see matching products.</p>
 
 	<div class="mt-8 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">

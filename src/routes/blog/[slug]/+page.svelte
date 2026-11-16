@@ -21,7 +21,7 @@
 {#if !post}
 	<div class="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
 		<Icon name="alert" class="mx-auto h-12 w-12 text-stone-300" />
-		<h1 class="mt-4 text-2xl font-extrabold tracking-tight text-ink">Post not found</h1>
+		<h1 class="mt-4 text-title font-extrabold tracking-tight text-ink">Post not found</h1>
 		<p class="mt-2 text-sm text-stone-500">This guide does not exist or was removed.</p>
 		<a
 			href="/blog"
@@ -40,7 +40,7 @@
 			<span class="font-medium text-ink">{post.title}</span>
 		</nav>
 
-		<h1 class="mt-4 text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{post.title}</h1>
+		<h1 class="mt-4 text-title font-extrabold tracking-tight text-ink">{post.title}</h1>
 		<p class="mt-3 flex flex-wrap items-center gap-2 text-sm text-stone-500">
 			<Icon name="clock" class="h-4 w-4 text-black" />
 			<span>{post.date}</span>

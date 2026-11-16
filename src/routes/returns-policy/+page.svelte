@@ -42,7 +42,7 @@
 		<span class="font-medium text-ink">Returns &amp; Refunds</span>
 	</nav>
 
-	<h1 class="mt-4 text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">Returns &amp; Refunds</h1>
+	<h1 class="mt-4 text-title font-extrabold tracking-tight text-ink">Returns &amp; Refunds</h1>
 	<p class="mt-4 text-base leading-relaxed text-stone-600">
 		Changed your mind? No problem. You can return any item within <strong class="text-ink"
 			>30 days of delivery</strong

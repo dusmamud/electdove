@@ -55,7 +55,7 @@
 	</nav>
 
 	<div class="mt-6 max-w-3xl">
-		<h1 class="text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">A small store with a simple idea</h1>
+		<h1 class="text-title font-extrabold tracking-tight text-ink">A small store with a simple idea</h1>
 		<p class="mt-4 text-base leading-relaxed text-stone-600">
 			Electdove started with a frustration we think most shoppers share: endless choice, inflated
 			prices, and pages that hide the information that actually matters. So we built the opposite —
@@ -85,7 +85,7 @@
 	</div>
 
 	<!-- Values -->
-	<h2 class="mt-12 text-xl font-extrabold tracking-tight text-ink sm:text-2xl">What we stand for</h2>
+	<h2 class="mt-12 text-title font-extrabold tracking-tight text-ink">What we stand for</h2>
 	<div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 		{#each values as value (value.title)}
 			<article class="rounded-2xl border border-line bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">

@@ -34,7 +34,7 @@
 
 <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
 	<Breadcrumbs items={[{ label: 'Wishlist' }]} />
-	<h1 class="mt-4 text-xl font-extrabold tracking-tight text-ink sm:text-2xl">
+	<h1 class="mt-4 text-title font-extrabold tracking-tight text-ink">
 		My Wishlist {#if saved.length > 0}<span class="text-stone-400">({saved.length})</span>{/if}
 	</h1>
 	<p class="mt-1 text-sm text-stone-500">Products you've saved for later. They stay on this device.</p>

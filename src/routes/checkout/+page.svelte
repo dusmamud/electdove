@@ -168,7 +168,7 @@
 </svelte:head>
 
 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-	<h1 class="text-xl font-extrabold tracking-tight text-ink sm:text-2xl">Checkout</h1>
+	<h1 class="text-title font-extrabold tracking-tight text-ink">Checkout</h1>
 	<div class="mt-5"><CheckoutSteps step={2} /></div>
 
 	{#if shop.cart.length === 0}
