@@ -98,13 +98,13 @@
 					{#each lines as line (line.id + '-' + (line.variant ?? ''))}
 						{@const p = line.product!}
 						<li class="flex gap-4 p-4 sm:p-5">
-							<a href="/product/{p.id}" class="block h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-mist sm:h-24 sm:w-24">
+							<a href="/product/{p.slug}" class="block h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-mist sm:h-24 sm:w-24">
 								<img src={p.src} alt={p.name} class="h-full w-full object-cover" />
 							</a>
 							<div class="min-w-0 flex-1">
 								<div class="flex items-start justify-between gap-3">
 									<h2 class="text-sm font-semibold text-ink sm:text-base">
-										<a href="/product/{p.id}" class="hover:text-black">{p.name}</a>
+										<a href="/product/{p.slug}" class="hover:text-black">{p.name}</a>
 									</h2>
 									<button
 										type="button"

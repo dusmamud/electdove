@@ -409,7 +409,7 @@
 					{#each filtered as product, i (product.id)}
 						<article style="--i: {i}" class="card-in group flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-xl">
 							<div class="relative aspect-square overflow-hidden bg-mist">
-								<a href="/product/{product.id}" aria-label={product.name} class="block h-full w-full">
+								<a href="/product/{product.slug}" aria-label={product.name} class="block h-full w-full">
 									<img
 										src={product.src}
 										alt={product.name}
@@ -442,7 +442,7 @@
 							</div>
 							<div class="flex flex-1 flex-col p-3 sm:p-4">
 								<h2 class="text-sm font-semibold text-ink">
-									<a href="/product/{product.id}" class="hover:text-black">{product.name}</a>
+									<a href="/product/{product.slug}" class="hover:text-black">{product.name}</a>
 								</h2>
 								<p class="mt-1.5 flex items-center gap-1 text-xs text-stone-500">
 									<Stars rating={product.rating} class="h-3 w-3 sm:h-3.5 sm:w-3.5" />

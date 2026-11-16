@@ -12,6 +12,7 @@ export type QA = { q: string; a: string };
 
 export type Product = {
 	id: number;
+	slug: string;
 	name: string;
 	price: number;
 	oldPrice: number;
@@ -37,6 +38,7 @@ export type Product = {
 export const products: Product[] = [
 	{
 		id: 1,
+		slug: 'iphone-15-pro',
 		name: 'iPhone 15 Pro',
 		price: 119900,
 		oldPrice: 134900,
@@ -93,6 +95,7 @@ export const products: Product[] = [
 	},
 	{
 		id: 2,
+		slug: 'google-pixel-8-pro',
 		name: 'Google Pixel 8 Pro',
 		price: 99999,
 		oldPrice: 106999,
@@ -149,6 +152,7 @@ export const products: Product[] = [
 	},
 	{
 		id: 3,
+		slug: 'samsung-galaxy-s24-ultra',
 		name: 'Samsung Galaxy S24 Ultra',
 		price: 119999,
 		oldPrice: 134999,
@@ -205,6 +209,7 @@ export const products: Product[] = [
 	},
 	{
 		id: 4,
+		slug: 'iphone-14',
 		name: 'iPhone 14',
 		price: 64900,
 		oldPrice: 79900,
@@ -261,6 +266,7 @@ export const products: Product[] = [
 	},
 	{
 		id: 5,
+		slug: 'apple-watch-ultra-2',
 		name: 'Apple Watch Ultra 2',
 		price: 84900,
 		oldPrice: 89900,
@@ -318,6 +324,7 @@ export const products: Product[] = [
 	},
 	{
 		id: 6,
+		slug: 'airpods-max',
 		name: 'AirPods Max',
 		price: 54900,
 		oldPrice: 59900,
@@ -374,6 +381,7 @@ export const products: Product[] = [
 	},
 	{
 		id: 7,
+		slug: 'playstation-5',
 		name: 'PlayStation 5',
 		price: 59990,
 		oldPrice: 69990,
@@ -431,6 +439,7 @@ export const products: Product[] = [
 	},
 	{
 		id: 8,
+		slug: 'samsung-galaxy-s24-ultra-2',
 		name: 'Samsung Galaxy S24 Ultra',
 		price: 119999,
 		oldPrice: 134999,
@@ -489,6 +498,15 @@ export const products: Product[] = [
 
 export function getProduct(id: number): Product | undefined {
 	return products.find((p) => p.id === id);
+}
+
+export function getProductBySlug(slug: string): Product | undefined {
+	return products.find((p) => p.slug === slug);
+}
+
+export function productUrl(id: number): string {
+	const p = getProduct(id);
+	return p ? `/product/${p.slug}` : '/shop';
 }
 
 export function relatedProducts(id: number, count = 4): Product[] {

@@ -15,7 +15,7 @@
 
 <article class="group">
 	<div class="relative overflow-hidden bg-white">
-		<a href="/product/{product.id}" aria-label={product.name} class="block">
+		<a href="/product/{product.slug}" aria-label={product.name} class="block">
 			<img
 				src={product.src}
 				alt={product.name}
@@ -53,7 +53,7 @@
 		</button>
 	</div>
 	<h3 class="mt-4 text-xs font-medium tracking-[0.14em] uppercase text-balance md:text-sm">
-		<a href="/product/{product.id}" class="hover:opacity-60">{product.name}</a>
+		<a href="/product/{product.slug}" class="hover:opacity-60">{product.name}</a>
 	</h3>
 	<p class="mt-1 text-xs text-muted md:text-sm">
 		{formatPrice(product.price)}

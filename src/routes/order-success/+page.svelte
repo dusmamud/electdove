@@ -3,7 +3,7 @@
 	import { page } from '$app/state';
 	import Icon from '#lib/components/Icon.svelte';
 	import CheckoutSteps from '#lib/components/CheckoutSteps.svelte';
-	import { getProduct } from '../../lib/data/products';
+	import { getProduct, productUrl} from '../../lib/data/products';
 	import { shop, formatPrice, formatDate, type Order } from '../../lib/data/store.svelte';
 
 	let order = $state<Order | undefined>(undefined);
@@ -62,7 +62,7 @@
 			<ul class="divide-y divide-line">
 				{#each order.items as item (item.id)}
 					<li class="flex items-center gap-4 px-5 py-4">
-						<a href="/product/{item.id}" class="block h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-mist">
+						<a href="{productUrl(item.id)}" class="block h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-mist">
 							<img src={item.src} alt={item.name} class="h-full w-full object-cover" />
 						</a>
 						<span class="min-w-0 flex-1">

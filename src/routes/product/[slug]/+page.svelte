@@ -5,10 +5,10 @@
 	import Icon from '#lib/components/Icon.svelte';
 	import Stars from '#lib/components/Stars.svelte';
 	import { reveal } from '../../../lib/actions/reveal';
-	import { getProduct, relatedProducts, type Review } from '../../../lib/data/products';
+	import { getProduct, getProductBySlug, relatedProducts, type Review } from '../../../lib/data/products';
 	import { shop, formatDate, formatPrice, variantDelta } from '../../../lib/data/store.svelte';
 
-	const product = $derived(getProduct(Number(page.params.id)));
+	const product = $derived(getProductBySlug(page.params.slug ?? ''));
 	const related = $derived(product ? relatedProducts(product.id) : []);
 	const recent = $derived(
 		product ? shop.recentProducts.filter((p) => p.id !== product!.id).slice(0, 4) : []
@@ -45,6 +45,7 @@
 					'@context': 'https://schema.org',
 					'@type': 'Product',
 					name: product.name,
+					url: 'https://electdove.pages.dev/product/' + product.slug,
 					image: 'https://electdove.pages.dev' + product.src,
 					description: product.desc,
 					brand: { '@type': 'Brand', name: 'Electdove' },
@@ -247,7 +248,7 @@
 
 	async function shareProduct() {
 		if (!product) return;
-		const url = `${window.location.origin}/product/${product.id}`;
+		const url = `${window.location.origin}/product/${product.slug}`;
 		try {
 			await navigator.clipboard.writeText(url);
 			shop.showToast('Product link copied to clipboard');
@@ -287,6 +288,8 @@
 	<title>{product ? `${product.name} — Electdove` : 'Product not found — Electdove'}</title>
 	{#if product}
 		<meta name="description" content={product.desc} />
+		<link rel="canonical" href={'https://electdove.pages.dev/product/' + product.slug} />
+		<meta property="og:url" content={'https://electdove.pages.dev/product/' + product.slug} />
 		<meta property="og:title" content="{product.name} — Electdove" />
 		<meta property="og:description" content={product.desc} />
 		<meta property="og:image" content={'https://electdove.pages.dev' + product.src} />
@@ -610,12 +613,12 @@
 		>
 				<h2 class="text-lg font-extrabold tracking-tight text-ink">Frequently Bought Together</h2>
 				<div class="mt-4 flex flex-wrap items-center gap-3">
-					<a href="/product/{product.id}" class="block h-20 w-20 overflow-hidden rounded-xl bg-mist">
+					<a href="/product/{product.slug}" class="block h-20 w-20 overflow-hidden rounded-xl bg-mist">
 						<img src={product.src} alt={product.name} class="h-full w-full object-cover" />
 					</a>
 					{#each fbtItems as item (item.id)}
 						<span class="text-xl font-bold text-stone-300" aria-hidden="true">+</span>
-						<a href="/product/{item.id}" class="block h-20 w-20 overflow-hidden rounded-xl bg-mist">
+						<a href="/product/{item.slug}" class="block h-20 w-20 overflow-hidden rounded-xl bg-mist">
 							<img src={item.src} alt={item.name} class="h-full w-full object-cover" />
 						</a>
 					{/each}
@@ -917,7 +920,7 @@
 				<div class="mt-6 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
 					{#each recent as item (item.id)}
 						<article class="group overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-							<a href="/product/{item.id}" class="block aspect-square overflow-hidden bg-mist">
+							<a href="/product/{item.slug}" class="block aspect-square overflow-hidden bg-mist">
 								<img
 									src={item.src}
 									alt={item.name}
@@ -927,7 +930,7 @@
 							</a>
 							<div class="p-3 sm:p-4">
 								<h3 class="text-sm font-semibold text-ink">
-									<a href="/product/{item.id}" class="hover:text-black">{item.name}</a>
+									<a href="/product/{item.slug}" class="hover:text-black">{item.name}</a>
 								</h3>
 								<p class="mt-2 text-base font-extrabold text-ink">{formatPrice(item.price)}</p>
 							</div>
@@ -944,7 +947,7 @@
 					{#each related as rel (rel.id)}
 						<article class="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-xl">
 							<div class="relative aspect-square overflow-hidden bg-mist">
-								<a href="/product/{rel.id}" aria-label={rel.name} class="block h-full w-full">
+								<a href="/product/{rel.slug}" aria-label={rel.name} class="block h-full w-full">
 									<img
 										src={rel.src}
 										alt={rel.name}
@@ -974,7 +977,7 @@
 							</div>
 							<div class="flex flex-1 flex-col p-3 sm:p-4">
 								<h3 class="text-sm font-semibold text-ink">
-									<a href="/product/{rel.id}" class="hover:text-black">{rel.name}</a>
+									<a href="/product/{rel.slug}" class="hover:text-black">{rel.name}</a>
 								</h3>
 								<p class="mt-1.5 flex items-center gap-1 text-xs text-stone-500">
 									<Stars rating={rel.rating} />

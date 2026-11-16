@@ -119,7 +119,7 @@
 						{@const p = line.product!}
 						<li class="flex gap-3">
 							<a
-								href="/product/{p.id}"
+								href="/product/{p.slug}"
 								onclick={() => shop.closeCart()}
 								class="block h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-mist"
 								aria-label={p.name}
@@ -130,7 +130,7 @@
 								<div class="flex items-start justify-between gap-2">
 									<div class="min-w-0">
 										<a
-											href="/product/{p.id}"
+											href="/product/{p.slug}"
 											onclick={() => shop.closeCart()}
 											class="block truncate text-sm font-semibold text-ink hover:text-black"
 										>

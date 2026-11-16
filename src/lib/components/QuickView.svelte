@@ -111,7 +111,7 @@
 							<Icon name="cart" class="h-4 w-4" /> Add to Bag
 						</button>
 						<a
-							href="/product/{product.id}"
+							href="/product/{product.slug}"
 							onclick={() => shop.closeQuickView()}
 							class="flex flex-1 items-center justify-center gap-2 rounded-lg border border-line px-5 py-3.5 text-sm font-semibold text-ink transition hover:border-black hover:text-black"
 						>

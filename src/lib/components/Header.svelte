@@ -39,10 +39,10 @@
 		searchOpen = false;
 	}
 
-	function pickSuggestion(id: number) {
+	function pickSuggestion(slug: string) {
 		searchOpen = false;
 		query = '';
-		goto(`/product/${id}`);
+		goto(`/product/${slug}`);
 	}
 
 	function onSearchKeydown(e: KeyboardEvent) {
@@ -141,7 +141,7 @@
 								type="button"
 								role="option"
 								aria-selected="false"
-								onclick={() => pickSuggestion(p.id)}
+								onclick={() => pickSuggestion(p.slug)}
 								class="flex w-full items-center gap-3 px-3 py-2.5 text-left transition hover:bg-mist"
 							>
 								<img src={p.src} alt="" class="h-10 w-10 shrink-0 rounded-lg object-cover" />

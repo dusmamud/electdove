@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import Icon from '#lib/components/Icon.svelte';
-	import { getProduct } from '../../lib/data/products';
+	import { getProduct, productUrl} from '../../lib/data/products';
 	import { shop, formatPrice, formatDate, ORDER_STEPS, type Order } from '../../lib/data/store.svelte';
 
 	let searchId = $state('');
@@ -197,7 +197,7 @@
 				<ul class="mt-3 space-y-3">
 					{#each found.items as item (item.id)}
 						<li class="flex items-center gap-3">
-							<a href="/product/{item.id}" class="block h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-mist">
+							<a href="{productUrl(item.id)}" class="block h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-mist">
 								<img src={item.src} alt={item.name} class="h-full w-full object-cover" />
 							</a>
 							<span class="min-w-0 flex-1">
