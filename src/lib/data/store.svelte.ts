@@ -27,7 +27,7 @@ export type Address = {
 	address: string;
 	city: string;
 	state: string;
-	zip: string;
+	pincode: string;
 };
 
 export type OrderItem = {
@@ -60,9 +60,9 @@ export type SavedAddress = Address & { id: string; label: string; isDefault: boo
 
 export type User = { name: string; email: string; passHash: string };
 
-export const FREE_SHIPPING_OVER = 50;
-export const SHIPPING_FEE = 4.99;
-export const GIFT_WRAP_FEE = 2.99;
+export const FREE_SHIPPING_OVER = 499;
+export const SHIPPING_FEE = 99;
+export const GIFT_WRAP_FEE = 49;
 
 /** Demo promo codes: WELCOME10 = 10% off, FREESHIP = free shipping. */
 export const PROMOS: Record<string, { type: 'percent' | 'ship'; value: number; label: string }> = {
@@ -73,11 +73,11 @@ export const PROMOS: Record<string, { type: 'percent' | 'ship'; value: number; l
 export const ORDER_STEPS = ['Placed', 'Processing', 'Shipped', 'Out for delivery', 'Delivered'] as const;
 
 export function formatPrice(n: number): string {
-	return Number.isInteger(n) ? '$' + n.toLocaleString('en-US') : '$' + n.toFixed(2);
+	return Number.isInteger(n) ? '₹' + n.toLocaleString('en-IN') : '₹' + n.toFixed(2);
 }
 
 export function formatDate(ts: number): string {
-	return new Date(ts).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+	return new Date(ts).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
 }
 
 function read<T>(key: string, fallback: T): T {
@@ -130,7 +130,10 @@ class ShopState {
 			...o,
 			status: o.status ?? 'active'
 		}));
-		this.addresses = read<SavedAddress[]>('electdove_addresses', []);
+		this.addresses = read<SavedAddress[]>('electdove_addresses', []).map((a) => ({
+			...a,
+			pincode: a.pincode ?? (a as unknown as { zip?: string }).zip ?? ''
+		}));
 		this.recentIds = read<number[]>('electdove_recent', []);
 		this.userReviews = read<Record<number, Review[]>>('electdove_reviews', {});
 		const sessionEmail = read<string | null>('electdove_session', null);

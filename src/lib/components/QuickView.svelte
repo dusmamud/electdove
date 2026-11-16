@@ -121,7 +121,7 @@
 
 					<div class="mt-4 flex flex-wrap items-center gap-4 text-xs font-medium text-stone-500">
 						<span class="flex items-center gap-1.5">
-							<Icon name="truck" class="h-4 w-4 text-black" /> Free shipping over $50
+							<Icon name="truck" class="h-4 w-4 text-black" /> Free shipping over ₹499
 						</span>
 						<span class="flex items-center gap-1.5">
 							<Icon name="returns" class="h-4 w-4 text-black" /> 30-day returns

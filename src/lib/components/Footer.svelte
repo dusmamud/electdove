@@ -35,7 +35,7 @@
 			<Icon name="truck" class="h-6 w-6" />
 			<div>
 				<p class="text-xs font-semibold tracking-[0.14em] uppercase">Free shipping</p>
-				<p class="mt-1 text-xs text-muted">On all orders worldwide, no minimum.</p>
+				<p class="mt-1 text-xs text-muted">On all orders across India, no minimum.</p>
 			</div>
 		</div>
 		<div class="flex items-center gap-4">

@@ -15,7 +15,7 @@
 		{
 			icon: 'truck',
 			title: 'Fast delivery',
-			text: 'Free shipping on orders over $50, and most orders arrive within 3–4 business days. Track every order by its ID.'
+			text: 'Free shipping on orders over ₹499, and most orders arrive within 3–4 business days. Track every order by its ID.'
 		},
 		{
 			icon: 'returns',

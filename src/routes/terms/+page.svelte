@@ -9,7 +9,7 @@
 		{
 			h: 'Pricing',
 			paras: [
-				'All prices are shown in US dollars (USD) and are inclusive of all taxes. A product’s price may change at any time, but the price shown at the moment you place an order is the price that applies to that order. Discounts shown against a product are calculated from its listed original price.'
+				'All prices are shown in Indian rupees (INR) and are inclusive of all taxes. A product’s price may change at any time, but the price shown at the moment you place an order is the price that applies to that order. Discounts shown against a product are calculated from its listed original price.'
 			]
 		},
 		{
@@ -56,7 +56,7 @@
 	<title>Terms of Service — Electdove</title>
 	<meta
 		name="description"
-		content="Electdove terms of service: a demo store — no real payments or fulfilment. Pricing in USD with taxes included, demo orders, promo codes, 30-day returns."
+		content="Electdove terms of service: a demo store — no real payments or fulfilment. Pricing in INR with taxes included, demo orders, promo codes, 30-day returns."
 	/>
 	<meta property="og:title" content="Terms of Service — Electdove" />
 	<meta

@@ -220,7 +220,7 @@
 				</h2>
 				<address class="mt-1.5 text-sm leading-relaxed text-stone-600 not-italic">
 					{found.address.name}, {found.address.address}, {found.address.city}, {found.address.state}
-					{found.address.zip}
+					{found.address.pincode}
 				</address>
 			</div>
 		</div>

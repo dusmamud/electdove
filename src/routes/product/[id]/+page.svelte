@@ -55,7 +55,7 @@
 					},
 					offers: {
 						'@type': 'Offer',
-						priceCurrency: 'USD',
+						priceCurrency: 'INR',
 						price: product.price,
 						availability: 'https://schema.org/InStock'
 					}
@@ -568,7 +568,7 @@
 						</p>
 					{:else}
 						<p class="mt-2.5 text-xs text-stone-500">
-							Usually delivered in 3–4 days · Free delivery on orders over $50
+							Usually delivered in 3–4 days · Free delivery on orders over ₹499
 						</p>
 					{/if}
 				</div>
@@ -581,14 +581,14 @@
 					<ul class="mt-2.5 space-y-1.5 text-sm text-stone-600">
 						<li>· <strong class="text-ink">WELCOME10</strong> — 10% off your first order</li>
 						<li>· <strong class="text-ink">FREESHIP</strong> — free shipping, no minimum</li>
-						<li>· Cash on Delivery available · EMI from {formatPrice(unitPrice / 6)}/month</li>
+						<li>· Cash on Delivery available · EMI from {formatPrice(Math.round(unitPrice / 6))}/month</li>
 					</ul>
 				</div>
 
 				<div class="mt-6 grid grid-cols-3 gap-3 border-t border-line pt-5 text-center">
 					<div>
 						<Icon name="truck" class="mx-auto h-5 w-5 text-black" />
-						<p class="mt-1.5 text-xs font-semibold text-ink">Free shipping over $50</p>
+						<p class="mt-1.5 text-xs font-semibold text-ink">Free shipping over ₹499</p>
 					</div>
 					<div>
 						<Icon name="returns" class="mx-auto h-5 w-5 text-black" />

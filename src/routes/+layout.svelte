@@ -22,7 +22,7 @@
 
 <svelte:head>
 	<title>Electdove — Premium Tech, Built for What's Next</title>
-	<meta name="description" content="Electdove — premium smartphones, smartwatches, audio, cameras and gaming. Free shipping worldwide." />
+	<meta name="description" content="Electdove — premium smartphones, smartwatches, audio, cameras and gaming. Free shipping across India." />
 	<meta property="og:title" content="Electdove — Premium Tech, Built for What's Next" />
 	<meta property="og:type" content="website" />
 	<link rel="icon" href="/favicon.svg" type="image/svg+xml" />

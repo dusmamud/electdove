@@ -38,8 +38,8 @@ export const products: Product[] = [
 	{
 		id: 1,
 		name: 'iPhone 15 Pro',
-		price: 999,
-		oldPrice: 1099,
+		price: 119900,
+		oldPrice: 134900,
 		rating: 4.8,
 		reviews: 214,
 		category: 'Smartphones',
@@ -61,7 +61,7 @@ export const products: Product[] = [
 			{ label: 'Connectivity', value: '5G, Wi-Fi 6E, Bluetooth 5.3, USB-C' },
 			{ label: 'In the box', value: 'iPhone, USB-C cable, documentation' }
 		],
-		option: { label: 'Storage', choices: ['128GB', '256GB', '512GB'], priceDeltas: [0, 100, 200] },
+		option: { label: 'Storage', choices: ['128GB', '256GB', '512GB'], priceDeltas: [0, 10000, 20000] },
 		seedReviews: [
 			{
 				name: 'Rohan K.',
@@ -94,8 +94,8 @@ export const products: Product[] = [
 	{
 		id: 2,
 		name: 'Google Pixel 8 Pro',
-		price: 899,
-		oldPrice: 999,
+		price: 99999,
+		oldPrice: 106999,
 		rating: 4.7,
 		reviews: 186,
 		category: 'Smartphones',
@@ -117,7 +117,7 @@ export const products: Product[] = [
 			{ label: 'Updates', value: '7 years of OS and security updates' },
 			{ label: 'In the box', value: 'Pixel 8 Pro, USB-C cable, Quick Switch adapter' }
 		],
-		option: { label: 'Storage', choices: ['128GB', '256GB', '512GB'], priceDeltas: [0, 100, 200] },
+		option: { label: 'Storage', choices: ['128GB', '256GB', '512GB'], priceDeltas: [0, 10000, 20000] },
 		seedReviews: [
 			{
 				name: 'Aarav M.',
@@ -150,8 +150,8 @@ export const products: Product[] = [
 	{
 		id: 3,
 		name: 'Samsung Galaxy S24 Ultra',
-		price: 1299,
-		oldPrice: 1499,
+		price: 119999,
+		oldPrice: 134999,
 		rating: 4.8,
 		reviews: 243,
 		category: 'Smartphones',
@@ -173,7 +173,7 @@ export const products: Product[] = [
 			{ label: 'S Pen', value: 'Built-in, 2.8 ms latency' },
 			{ label: 'In the box', value: 'Galaxy S24 Ultra, S Pen, USB-C cable' }
 		],
-		option: { label: 'Storage', choices: ['256GB', '512GB', '1TB'], priceDeltas: [0, 150, 300] },
+		option: { label: 'Storage', choices: ['256GB', '512GB', '1TB'], priceDeltas: [0, 15000, 30000] },
 		seedReviews: [
 			{
 				name: 'Vikram R.',
@@ -206,8 +206,8 @@ export const products: Product[] = [
 	{
 		id: 4,
 		name: 'iPhone 14',
-		price: 899,
-		oldPrice: 999,
+		price: 64900,
+		oldPrice: 79900,
 		rating: 4.6,
 		reviews: 158,
 		category: 'Smartphones',
@@ -229,7 +229,7 @@ export const products: Product[] = [
 			{ label: 'Connectivity', value: '5G, Wi-Fi 6, Bluetooth 5.3, Lightning' },
 			{ label: 'In the box', value: 'iPhone, USB-C to Lightning cable' }
 		],
-		option: { label: 'Storage', choices: ['128GB', '256GB', '512GB'], priceDeltas: [0, 100, 200] },
+		option: { label: 'Storage', choices: ['128GB', '256GB', '512GB'], priceDeltas: [0, 10000, 20000] },
 		seedReviews: [
 			{
 				name: 'Kabir D.',
@@ -262,8 +262,8 @@ export const products: Product[] = [
 	{
 		id: 5,
 		name: 'Apple Watch Ultra 2',
-		price: 899,
-		oldPrice: 999,
+		price: 84900,
+		oldPrice: 89900,
 		rating: 4.7,
 		reviews: 132,
 		category: 'Smartwatches',
@@ -319,8 +319,8 @@ export const products: Product[] = [
 	{
 		id: 6,
 		name: 'AirPods Max',
-		price: 549,
-		oldPrice: 649,
+		price: 54900,
+		oldPrice: 59900,
 		rating: 4.6,
 		reviews: 97,
 		category: 'Audio',
@@ -375,8 +375,8 @@ export const products: Product[] = [
 	{
 		id: 7,
 		name: 'PlayStation 5',
-		price: 499,
-		oldPrice: 549,
+		price: 59990,
+		oldPrice: 69990,
 		rating: 4.8,
 		reviews: 321,
 		category: 'Gaming',
@@ -399,7 +399,7 @@ export const products: Product[] = [
 			{ label: 'Controller', value: 'DualSense wireless, USB-C charging' },
 			{ label: 'In the box', value: 'PS5 console, DualSense controller, stand, cables' }
 		],
-		option: { label: 'Storage', choices: ['1TB', '2TB'], priceDeltas: [0, 100] },
+		option: { label: 'Storage', choices: ['1TB', '2TB'], priceDeltas: [0, 10000] },
 		seedReviews: [
 			{
 				name: 'Arjun B.',
@@ -432,8 +432,8 @@ export const products: Product[] = [
 	{
 		id: 8,
 		name: 'Samsung Galaxy S24 Ultra',
-		price: 1299,
-		oldPrice: 1499,
+		price: 119999,
+		oldPrice: 134999,
 		rating: 4.8,
 		reviews: 243,
 		category: 'Smartphones',
@@ -455,7 +455,7 @@ export const products: Product[] = [
 			{ label: 'S Pen', value: 'Built-in, 2.8 ms latency' },
 			{ label: 'In the box', value: 'Galaxy S24 Ultra, S Pen, USB-C cable' }
 		],
-		option: { label: 'Storage', choices: ['256GB', '512GB', '1TB'], priceDeltas: [0, 150, 300] },
+		option: { label: 'Storage', choices: ['256GB', '512GB', '1TB'], priceDeltas: [0, 15000, 30000] },
 		seedReviews: [
 			{
 				name: 'Vikram R.',
@@ -526,5 +526,5 @@ export const smartphones: Product[] = [
 ];
 
 export function formatPrice(n: number): string {
-	return '$' + n.toLocaleString('en-US');
+	return '₹' + n.toLocaleString('en-IN');
 }

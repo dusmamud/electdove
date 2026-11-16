@@ -54,7 +54,7 @@
 
 <svelte:head>
 	<title>Your Bag — Electdove</title>
-	<meta name="description" content="Review your Electdove cart — free shipping over $50, 30-day returns, secure checkout." />
+	<meta name="description" content="Review your Electdove cart — free shipping over ₹499, 30-day returns, secure checkout." />
 </svelte:head>
 
 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -246,7 +246,7 @@
 								<Icon name="truck" class="h-4 w-4 text-black" /> Estimated delivery
 							</dt>
 							<dd class="font-semibold text-ink">
-								{new Date(Date.now() + 4 * 24 * 3_600_000).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+								{new Date(Date.now() + 4 * 24 * 3_600_000).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' })}
 							</dd>
 						</div>
 						<div class="flex justify-between border-t border-line pt-3 text-base">

@@ -53,7 +53,7 @@
 <!-- Top announcement bar -->
 <div class="bg-black text-white">
 	<div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-[10px] tracking-[0.14em] uppercase sm:px-6">
-		<span class="hidden md:block">Free shipping worldwide</span>
+		<span class="hidden md:block">Free shipping across India</span>
 		<span class="mx-auto md:mx-0">Up to 10% off on selected tech. Limited time only.</span>
 		<span class="hidden gap-5 md:flex">
 			<a href="/contact" class="hover:opacity-70">Contact</a>

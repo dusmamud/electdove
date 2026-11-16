@@ -22,7 +22,7 @@
 	let addrStreet = $state('');
 	let addrCity = $state('');
 	let addrState = $state('');
-	let addrZip = $state('');
+	let addrPincode = $state('');
 	let addrMsg = $state('');
 
 	function logout() {
@@ -67,7 +67,7 @@
 		addrStreet = '';
 		addrCity = '';
 		addrState = '';
-		addrZip = '';
+		addrPincode = '';
 	}
 
 	function editAddress(id: string) {
@@ -81,13 +81,17 @@
 		addrStreet = a.address;
 		addrCity = a.city;
 		addrState = a.state;
-		addrZip = a.zip;
+		addrPincode = a.pincode;
 	}
 
 	function saveAddress() {
 		addrMsg = '';
-		if (!addrName.trim() || !addrStreet.trim() || !addrCity.trim() || !addrState.trim() || !addrZip.trim()) {
-			addrMsg = 'Please fill in name, street, city, state and ZIP.';
+		if (!addrName.trim() || !addrStreet.trim() || !addrCity.trim() || !addrState.trim() || !addrPincode.trim()) {
+			addrMsg = 'Please fill in name, street, city, state and PIN code.';
+			return;
+		}
+		if (!/^\d{6}$/.test(addrPincode.trim())) {
+			addrMsg = 'Enter a valid 6-digit PIN code.';
 			return;
 		}
 		const data = {
@@ -97,7 +101,7 @@
 			address: addrStreet.trim(),
 			city: addrCity.trim(),
 			state: addrState.trim(),
-			zip: addrZip.trim(),
+			pincode: addrPincode.trim(),
 			label: addrLabel.trim() || addrCity.trim()
 		};
 		if (editingId) {
@@ -269,7 +273,7 @@
 								{/if}
 							</p>
 							<p class="mt-1.5 text-xs leading-relaxed text-stone-500">
-								{a.name}<br />{a.address}, {a.city}, {a.state} {a.zip}
+								{a.name}<br />{a.address}, {a.city}, {a.state} {a.pincode}
 							</p>
 							<div class="mt-3 flex flex-wrap gap-2">
 								<button
@@ -343,8 +347,8 @@
 					<input id="addr-state" type="text" bind:value={addrState} placeholder="NY" class="mt-1.5 w-full rounded-lg border border-line px-3.5 py-2.5 text-sm outline-none focus:border-black" />
 				</div>
 				<div>
-					<label for="addr-zip" class="text-xs font-semibold text-stone-500">ZIP code *</label>
-					<input id="addr-zip" type="text" bind:value={addrZip} placeholder="10001" class="mt-1.5 w-full rounded-lg border border-line px-3.5 py-2.5 text-sm outline-none focus:border-black" />
+					<label for="addr-pincode" class="text-xs font-semibold text-stone-500">PIN code *</label>
+					<input id="addr-pincode" type="text" bind:value={addrPincode} placeholder="110001" maxlength="6" class="mt-1.5 w-full rounded-lg border border-line px-3.5 py-2.5 text-sm outline-none focus:border-black" />
 				</div>
 				<div class="flex items-center gap-2 sm:col-span-2">
 					<button

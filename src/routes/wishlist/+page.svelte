@@ -29,7 +29,7 @@
 
 <svelte:head>
 	<title>My Wishlist — Electdove</title>
-	<meta name="description" content="Your saved Electdove products — move them to your cart anytime. Free shipping over $50." />
+	<meta name="description" content="Your saved Electdove products — move them to your cart anytime. Free shipping over ₹499." />
 </svelte:head>
 
 <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">

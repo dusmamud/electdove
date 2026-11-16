@@ -107,7 +107,7 @@
 			</h2>
 			<address class="mt-2 text-sm leading-relaxed text-stone-600 not-italic">
 				{order.address.name}<br />
-				{order.address.address}, {order.address.city}, {order.address.state} {order.address.zip}<br />
+				{order.address.address}, {order.address.city}, {order.address.state} {order.address.pincode}<br />
 				{#if order.address.phone}{order.address.phone}<br />{/if}
 				{order.address.email}
 			</address>

@@ -4,8 +4,8 @@
 	const points = [
 		{
 			icon: 'truck',
-			title: 'Free shipping over $50',
-			text: 'Orders of $50 or more ship free. Orders under $50 carry a flat $4.99 shipping fee, shown clearly in your cart before checkout.'
+			title: 'Free shipping over ₹499',
+			text: 'Orders of ₹499 or more ship free. Orders under ₹499 carry a flat ₹99 shipping fee, shown clearly in your cart before checkout.'
 		},
 		{
 			icon: 'clock',
@@ -29,12 +29,12 @@
 	<title>Shipping Policy — Electdove</title>
 	<meta
 		name="description"
-		content="Electdove shipping policy: free shipping on orders over $50 (otherwise $4.99), delivery in 3–4 business days, and order tracking by ID."
+		content="Electdove shipping policy: free shipping on orders over ₹499 (otherwise ₹99), delivery in 3–4 business days, and order tracking by ID."
 	/>
 	<meta property="og:title" content="Shipping Policy — Electdove" />
 	<meta
 		property="og:description"
-		content="Free shipping over $50, $4.99 flat otherwise, delivery in 3–4 business days, and tracking for every order."
+		content="Free shipping over ₹499, ₹99 flat otherwise, delivery in 3–4 business days, and tracking for every order."
 	/>
 	<meta property="og:type" content="website" />
 	<meta property="og:image" content="https://electdove.pages.dev/hero.webp" />
@@ -49,7 +49,7 @@
 
 	<h1 class="mt-4 text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">Shipping Policy</h1>
 	<p class="mt-4 text-base leading-relaxed text-stone-600">
-		Shipping is simple at Electdove: one flat fee, free over $50, and delivery in 3–4 business days.
+		Shipping is simple at Electdove: one flat fee, free over ₹499, and delivery in 3–4 business days.
 		The exact cost and date are always shown before you pay — there are no surprises at checkout.
 	</p>
 

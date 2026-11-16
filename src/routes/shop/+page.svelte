@@ -9,14 +9,14 @@
 	import { shop, formatPrice } from '../../lib/data/store.svelte';
 
 	type SortKey = 'featured' | 'price-asc' | 'price-desc' | 'rating' | 'discount';
-	type PriceKey = 'all' | 'under600' | '600-900' | '900-1100' | '1100plus';
+	type PriceKey = 'all' | 'under60000' | '60000-85000' | '85000-115000' | '115000plus';
 
 	const PRICE_BUCKETS: { key: PriceKey; label: string }[] = [
 		{ key: 'all', label: 'All prices' },
-		{ key: 'under600', label: 'Under $600' },
-		{ key: '600-900', label: '$600 – $900' },
-		{ key: '900-1100', label: '$900 – $1,100' },
-		{ key: '1100plus', label: '$1,100+' }
+		{ key: 'under60000', label: 'Under ₹60,000' },
+		{ key: '60000-85000', label: '₹60,000 – ₹85,000' },
+		{ key: '85000-115000', label: '₹85,000 – ₹1,15,000' },
+		{ key: '115000plus', label: '₹1,15,000+' }
 	];
 
 	const RATING_OPTIONS: { value: number; label: string }[] = [
@@ -67,14 +67,14 @@
 
 	function priceMatches(p: Product): boolean {
 		switch (price) {
-			case 'under600':
-				return p.price < 600;
-			case '600-900':
-				return p.price >= 600 && p.price <= 900;
-			case '900-1100':
-				return p.price > 900 && p.price <= 1100;
-			case '1100plus':
-				return p.price > 1100;
+			case 'under60000':
+				return p.price < 60000;
+			case '60000-85000':
+				return p.price >= 60000 && p.price <= 85000;
+			case '85000-115000':
+				return p.price > 85000 && p.price <= 115000;
+			case '115000plus':
+				return p.price > 115000;
 			default:
 				return true;
 		}
@@ -178,7 +178,7 @@
 	<title>Shop — Electdove</title>
 	<meta
 		name="description"
-		content="Shop all products at Electdove — electronics, fashion, home, beauty and more with free shipping over $50."
+		content="Shop all products at Electdove — electronics, fashion, home, beauty and more with free shipping over ₹499."
 	/>
 </svelte:head>
 

@@ -62,7 +62,7 @@
 			</span>
 			<h2 class="mt-4 text-lg font-bold text-ink">Shipping Policy</h2>
 			<ul class="mt-3 space-y-2 text-sm leading-relaxed text-stone-600">
-				<li class="flex gap-2"><Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-black" /> Free shipping on all orders over $50 — otherwise a flat $4.99 fee applies.</li>
+				<li class="flex gap-2"><Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-black" /> Free shipping on all orders over ₹499 — otherwise a flat ₹99 fee applies.</li>
 				<li class="flex gap-2"><Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-black" /> Delivery takes 3–4 business days, depending on your location.</li>
 				<li class="flex gap-2"><Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-black" /> Your estimated delivery date is shown at checkout and on the Track Order page.</li>
 				<li class="flex gap-2"><Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-black" /> You can track your order any time with your order ID.</li>

@@ -14,7 +14,7 @@
 	let address = $state('');
 	let city = $state('');
 	let stateName = $state('');
-	let zip = $state('');
+	let pincode = $state('');
 
 	let payment = $state<PaymentMethod>('cod');
 	let cardNumber = $state('');
@@ -59,7 +59,7 @@
 		address = a.address;
 		city = a.city;
 		stateName = a.state;
-		zip = a.zip;
+		pincode = a.pincode;
 	}
 
 	function pickAddress(id: string | null) {
@@ -86,13 +86,14 @@
 		if (!email.trim()) errs.email = 'Email is required.';
 		else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
 			errs.email = 'Enter a valid email address.';
-		if (phone.trim() && phone.replace(/\D/g, '').length < 8)
-			errs.phone = 'Enter a valid phone number.';
+		const digits = phone.replace(/\D/g, '');
+		if (phone.trim() && !(digits.length === 10 || (digits.length === 12 && digits.startsWith('91'))))
+			errs.phone = 'Enter a valid 10-digit mobile number.';
 		if (!address.trim()) errs.address = 'Street address is required.';
 		if (!city.trim()) errs.city = 'City is required.';
 		if (!stateName.trim()) errs.state = 'State is required.';
-		if (!zip.trim()) errs.zip = 'ZIP code is required.';
-		else if (zip.trim().length < 3) errs.zip = 'Enter a valid ZIP code.';
+		if (!pincode.trim()) errs.pincode = 'PIN code is required.';
+		else if (!/^\d{6}$/.test(pincode.trim())) errs.pincode = 'Enter a valid 6-digit PIN code.';
 
 		if (payment === 'card') {
 			const digits = cardNumber.replace(/\D/g, '');
@@ -125,7 +126,7 @@
 			address: address.trim(),
 			city: city.trim(),
 			state: stateName.trim(),
-			zip: zip.trim()
+			pincode: pincode.trim()
 		};
 		const label =
 			payment === 'cod'
@@ -137,7 +138,7 @@
 		if (order) {
 			if (shop.user && saveAddress) {
 				const exists = shop.addresses.some(
-					(a) => a.address.trim().toLowerCase() === addr.address.toLowerCase() && a.zip === addr.zip
+					(a) => a.address.trim().toLowerCase() === addr.address.toLowerCase() && a.pincode === addr.pincode
 				);
 				if (!exists) {
 					shop.addAddress({ ...addr, label: addr.city || 'My address' });
@@ -163,7 +164,7 @@
 
 <svelte:head>
 	<title>Checkout — Electdove</title>
-	<meta name="description" content="Secure checkout at Electdove — cash on delivery, card and UPI accepted. Free shipping over $50." />
+	<meta name="description" content="Secure checkout at Electdove — cash on delivery, card and UPI accepted. Free shipping over ₹499." />
 </svelte:head>
 
 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -215,7 +216,7 @@
 											{/if}
 										</span>
 										<span class="mt-1 block text-xs leading-relaxed text-stone-500">
-											{saved.name} · {saved.address}, {saved.city}, {saved.state} {saved.zip}
+											{saved.name} · {saved.address}, {saved.city}, {saved.state} {saved.pincode}
 										</span>
 									</button>
 								{/each}
@@ -247,13 +248,13 @@
 						</div>
 						<div data-error={!!errors.phone}>
 							<label for="phone" class="text-xs font-semibold text-stone-500">Phone <span class="font-normal text-stone-400">(optional)</span></label>
-							<input id="phone" type="tel" bind:value={phone} placeholder="+1 555 010 1234" autocomplete="tel" class="{inputCls} mt-1.5 {errors.phone ? 'border-red-400' : ''}" />
+							<input id="phone" type="tel" bind:value={phone} placeholder="+91 98765 43210" autocomplete="tel" class="{inputCls} mt-1.5 {errors.phone ? 'border-red-400' : ''}" />
 							{#if errors.phone}<p class="mt-1 text-xs text-red-600">{errors.phone}</p>{/if}
 						</div>
-						<div data-error={!!errors.zip}>
-							<label for="zip" class="text-xs font-semibold text-stone-500">ZIP code *</label>
-							<input id="zip" type="text" bind:value={zip} placeholder="10001" autocomplete="postal-code" inputmode="numeric" class="{inputCls} mt-1.5 {errors.zip ? 'border-red-400' : ''}" />
-							{#if errors.zip}<p class="mt-1 text-xs text-red-600">{errors.zip}</p>{/if}
+						<div data-error={!!errors.pincode}>
+							<label for="pincode" class="text-xs font-semibold text-stone-500">PIN code *</label>
+							<input id="pincode" type="text" bind:value={pincode} placeholder="110001" autocomplete="postal-code" inputmode="numeric" maxlength="6" class="{inputCls} mt-1.5 {errors.pincode ? 'border-red-400' : ''}" />
+							{#if errors.pincode}<p class="mt-1 text-xs text-red-600">{errors.pincode}</p>{/if}
 						</div>
 						<div class="sm:col-span-2" data-error={!!errors.address}>
 							<label for="address" class="text-xs font-semibold text-stone-500">Street address *</label>
