@@ -162,7 +162,7 @@ export const products: Product[] = [
 		stock: 10,
 		desc: 'Galaxy AI, a 200MP camera and the built-in S Pen. Titanium frame, flat 6.8" display and a battery that easily lasts two days of normal use.',
 		src: '/product-galaxy.webp',
-		images: ['/product-galaxy.webp'],
+		images: ['/product-galaxy.webp', '/galaxy-s24-ultra-front.webp', '/galaxy-s24-ultra-side.webp'],
 		highlights: [
 			'Galaxy AI: Live Translate, Circle to Search, Note Assist',
 			'200MP camera with 100x Space Zoom',
@@ -449,7 +449,7 @@ export const products: Product[] = [
 		stock: 10,
 		desc: 'Galaxy AI, a 200MP camera and the built-in S Pen. Titanium frame, flat 6.8" display and a battery that easily lasts two days of normal use.',
 		src: '/phone-galaxy-s24.webp',
-		images: ['/phone-galaxy-s24.webp'],
+		images: ['/phone-galaxy-s24.webp', '/galaxy-s24-ultra-front.webp', '/galaxy-s24-ultra-side.webp'],
 		highlights: [
 			'Galaxy AI: Live Translate, Circle to Search, Note Assist',
 			'200MP camera with 100x Space Zoom',
