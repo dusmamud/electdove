@@ -162,7 +162,7 @@ export const products: Product[] = [
 		stock: 10,
 		desc: 'Galaxy AI, a 200MP camera and the built-in S Pen. Titanium frame, flat 6.8" display and a battery that easily lasts two days of normal use.',
 		src: '/product-galaxy.webp',
-		images: ['/product-galaxy.webp', '/galaxy-s24-ultra-front.webp', '/galaxy-s24-ultra-side.webp'],
+		images: ['/product-galaxy.webp', '/galaxy-s24-ultra-front.webp', '/galaxy-s24-ultra-side.webp', '/galaxy-s24-ultra-spen.webp'],
 		highlights: [
 			'Galaxy AI: Live Translate, Circle to Search, Note Assist',
 			'200MP camera with 100x Space Zoom',
@@ -219,7 +219,7 @@ export const products: Product[] = [
 		stock: 18,
 		desc: 'A15 Bionic power, a superb dual-camera system and all-day battery. The sweet spot of the iPhone line-up — everything most people need, for less.',
 		src: '/phone-iphone14.webp',
-		images: ['/phone-iphone14.webp', '/iphone-14-front.webp', '/iphone-14-side.webp', '/iphone-14-back.webp'],
+		images: ['/phone-iphone14.webp', '/iphone-14-front.webp', '/iphone-14-side.webp', '/iphone-14-back.webp', '/iphone-14-camera.webp'],
 		highlights: [
 			'A15 Bionic chip — still fast for anything you throw at it',
 			'12MP dual camera with Night mode and Cinematic mode',
@@ -449,7 +449,7 @@ export const products: Product[] = [
 		stock: 10,
 		desc: 'Galaxy AI, a 200MP camera and the built-in S Pen. Titanium frame, flat 6.8" display and a battery that easily lasts two days of normal use.',
 		src: '/phone-galaxy-s24.webp',
-		images: ['/phone-galaxy-s24.webp', '/galaxy-s24-ultra-front.webp', '/galaxy-s24-ultra-side.webp'],
+		images: ['/phone-galaxy-s24.webp', '/galaxy-s24-ultra-front.webp', '/galaxy-s24-ultra-side.webp', '/galaxy-s24-ultra-spen.webp'],
 		highlights: [
 			'Galaxy AI: Live Translate, Circle to Search, Note Assist',
 			'200MP camera with 100x Space Zoom',
