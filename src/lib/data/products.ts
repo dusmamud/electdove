@@ -334,7 +334,7 @@ export const products: Product[] = [
 		stock: 14,
 		desc: 'High-fidelity audio, computational audio and active noise cancellation in a beautifully built over-ear design. Personalised Spatial Audio puts you in the centre of the sound.',
 		src: '/product-headphones.webp',
-		images: ['/product-headphones.webp'],
+		images: ['/product-headphones.webp', '/airpods-max-cup.webp', '/airpods-max-side.webp', '/airpods-max-crown.webp'],
 		highlights: [
 			'Active Noise Cancellation with Transparency mode',
 			'Personalised Spatial Audio with dynamic head tracking',
