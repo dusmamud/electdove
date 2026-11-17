@@ -392,7 +392,7 @@ export const products: Product[] = [
 		tag: 'Best Seller',
 		desc: 'Lightning-fast loading, 4K gaming up to 120Hz and the immersive DualSense controller. The PS5 puts you at the centre of the game with haptic feedback and adaptive triggers.',
 		src: '/product-ps5.webp',
-		images: ['/product-ps5.webp'],
+		images: ['/product-ps5.webp', '/ps5-front.webp', '/ps5-side.webp', '/ps5-controller.webp'],
 		highlights: [
 			'Ultra-high-speed custom SSD — near-instant loading',
 			'Up to 4K 120Hz with ray tracing',
