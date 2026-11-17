@@ -108,6 +108,12 @@
 					<span class="absolute top-0 right-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-black px-1 text-[10px] font-medium text-white">{shop.wishlistCount}</span>
 				{/if}
 			</a>
+			<a href="/compare" class="relative hidden h-11 w-11 items-center justify-center hover:opacity-60 sm:flex" aria-label="Compare products">
+				<Icon name="compare" class="h-5 w-5" />
+				{#if shop.compareCount > 0}
+					<span class="absolute top-0 right-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-black px-1 text-[10px] font-medium text-white">{shop.compareCount}</span>
+				{/if}
+			</a>
 		</div>
 	</div>
 
@@ -180,6 +186,8 @@
 			<div class="flex flex-wrap gap-x-6 gap-y-2 py-3 text-xs font-medium tracking-[0.2em] uppercase">
 				<a href={shop.user ? '/account' : '/login'} onclick={() => (menuOpen = false)}>Account</a>
 				<a href="/wishlist" onclick={() => (menuOpen = false)}>Wishlist</a>
+				<a href="/compare" onclick={() => (menuOpen = false)}>Compare</a>
+				<a href="/emi-calculator" onclick={() => (menuOpen = false)}>EMI Calculator</a>
 				<a href="/orders" onclick={() => (menuOpen = false)}>Orders</a>
 				<a href="/track-order" onclick={() => (menuOpen = false)}>Track Order</a>
 				<a href="/about" onclick={() => (menuOpen = false)}>About</a>

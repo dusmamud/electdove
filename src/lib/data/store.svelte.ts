@@ -72,6 +72,19 @@ export const PROMOS: Record<string, { type: 'percent' | 'ship'; value: number; l
 
 export const ORDER_STEPS = ['Placed', 'Processing', 'Shipped', 'Out for delivery', 'Delivered'] as const;
 
+/** No-cost EMI for a price over `months` (rounded up to the rupee). */
+export function emiMonthly(price: number, months = 12): number {
+	return Math.ceil(price / months);
+}
+
+/** Standard reducing-balance EMI: P = loan, annualRate in %, n = months. */
+export function calcEmi(loan: number, annualRate: number, months: number): number {
+	if (loan <= 0 || months <= 0) return 0;
+	if (annualRate <= 0) return loan / months;
+	const r = annualRate / 12 / 100;
+	return (loan * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
+}
+
 export function formatPrice(n: number): string {
 	return Number.isInteger(n) ? '₹' + n.toLocaleString('en-IN') : '₹' + n.toFixed(2);
 }
@@ -118,6 +131,8 @@ class ShopState {
 
 	/** Recently viewed product ids, most recent first (max 8). */
 	recentIds = $state<number[]>([]);
+	/** Compare list: product ids, most recently added last (max 4). */
+	compareIds = $state<number[]>([]);
 	/** Reviews written by this user on this device, keyed by product id. */
 	private userReviews = $state<Record<number, Review[]>>({});
 
@@ -135,6 +150,7 @@ class ShopState {
 			pincode: a.pincode ?? (a as unknown as { zip?: string }).zip ?? ''
 		}));
 		this.recentIds = read<number[]>('electdove_recent', []);
+		this.compareIds = read<number[]>('electdove_compare', []);
 		this.userReviews = read<Record<number, Review[]>>('electdove_reviews', {});
 		const sessionEmail = read<string | null>('electdove_session', null);
 		if (sessionEmail) {
@@ -170,6 +186,17 @@ class ShopState {
 
 	get wishlistCount(): number {
 		return this.wishlist.size;
+	}
+
+	get compareCount(): number {
+		return this.compareIds.length;
+	}
+
+	/** Compared products (full objects, in the order they were added). */
+	get compareProducts() {
+		return this.compareIds
+			.map((id) => getProduct(id))
+			.filter((p): p is NonNullable<typeof p> => Boolean(p));
 	}
 
 	/** Recently viewed products (full objects, most recent first). */
@@ -254,6 +281,38 @@ class ShopState {
 
 	isWished(id: number) {
 		return this.wishlist.has(id);
+	}
+
+	// ---- compare (max 4 products, side by side on /compare) ----
+	toggleCompare(id: number) {
+		const product = getProduct(id);
+		if (!product) return;
+		if (this.compareIds.includes(id)) {
+			this.compareIds = this.compareIds.filter((x) => x !== id);
+			this.showToast(`${product.name} removed from compare`);
+		} else {
+			if (this.compareIds.length >= 4) {
+				this.showToast('Compare holds up to 4 products');
+				return;
+			}
+			this.compareIds = [...this.compareIds, id];
+			this.showToast(`${product.name} added to compare`);
+		}
+		write('electdove_compare', this.compareIds);
+	}
+
+	isComparing(id: number) {
+		return this.compareIds.includes(id);
+	}
+
+	removeFromCompare(id: number) {
+		this.compareIds = this.compareIds.filter((x) => x !== id);
+		write('electdove_compare', this.compareIds);
+	}
+
+	clearCompare() {
+		this.compareIds = [];
+		write('electdove_compare', this.compareIds);
 	}
 
 	// ---- recently viewed ----

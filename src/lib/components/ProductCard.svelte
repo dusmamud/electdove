@@ -63,6 +63,20 @@
 	</p>
 	<button
 		type="button"
+		onclick={() => shop.toggleCompare(product.id)}
+		aria-pressed={shop.isComparing(product.id)}
+		aria-label={shop.isComparing(product.id)
+			? `Remove ${product.name} from compare`
+			: `Add ${product.name} to compare`}
+		class="mt-2 flex min-h-9 items-center gap-1.5 text-xs font-semibold transition {shop.isComparing(product.id)
+			? 'text-black'
+			: 'text-stone-500 hover:text-black'}"
+	>
+		<Icon name="compare" class="h-4 w-4" />
+		{shop.isComparing(product.id) ? 'Added to compare' : 'Add to compare'}
+	</button>
+	<button
+		type="button"
 		onclick={addToBag}
 		aria-label="Add {product.name} to bag"
 		class="press mt-3 flex min-h-11 w-full items-center justify-center gap-2 rounded-lg px-3 py-3 text-[11px] font-semibold tracking-[0.12em] uppercase transition md:hidden {added

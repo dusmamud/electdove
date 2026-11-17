@@ -6,7 +6,7 @@
 	import Stars from '#lib/components/Stars.svelte';
 	import { reveal } from '../../../lib/actions/reveal';
 	import { getProduct, getProductBySlug, relatedProducts, type Review } from '../../../lib/data/products';
-	import { shop, formatDate, formatPrice, variantDelta } from '../../../lib/data/store.svelte';
+	import { shop, formatDate, formatPrice, variantDelta, emiMonthly } from '../../../lib/data/store.svelte';
 
 	const product = $derived(getProductBySlug(page.params.slug ?? ''));
 	const related = $derived(product ? relatedProducts(product.id) : []);
@@ -439,6 +439,17 @@
 					</span>
 					<span class="text-xs text-stone-500">Inclusive of all taxes</span>
 				</p>
+				<p class="mt-2 text-sm text-stone-600">
+					No-cost EMI from
+					<span class="font-bold text-ink">{formatPrice(emiMonthly(unitPrice))}/month</span>
+					·
+					<a
+						href="/emi-calculator?product={product.slug}"
+						class="font-semibold text-black underline underline-offset-2"
+					>
+						Calculate EMI
+					</a>
+				</p>
 
 				<ul class="mt-4 space-y-1.5 text-sm text-stone-600">
 					{#each product.highlights as h (h)}
@@ -535,6 +546,18 @@
 						aria-label={shop.isWished(product.id) ? 'Remove from wishlist' : 'Save to wishlist'}
 					>
 						<Icon name="heart" class="h-5 w-5 {shop.isWished(product.id) ? 'fill-red-500' : ''}" />
+					</button>
+					<button
+						type="button"
+						onclick={() => shop.toggleCompare(product.id)}
+						aria-pressed={shop.isComparing(product.id)}
+						class="flex h-11 items-center gap-2 rounded-lg border border-line bg-white px-4 text-sm font-semibold transition hover:border-black {shop.isComparing(product.id)
+							? 'text-black'
+							: 'text-stone-600 hover:text-black'}"
+						aria-label={shop.isComparing(product.id) ? 'Remove from compare' : 'Add to compare'}
+					>
+						<Icon name="compare" class="h-4 w-4" />
+						{shop.isComparing(product.id) ? 'Compared' : 'Compare'}
 					</button>
 					<button
 						type="button"

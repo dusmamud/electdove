@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import type { LayoutProps } from './$types';
+	import { onNavigate } from '$app/navigation';
 	import Header from '../lib/components/Header.svelte';
 	import Footer from '../lib/components/Footer.svelte';
 	import Toast from '../lib/components/Toast.svelte';
@@ -10,6 +11,23 @@
 	import CookieBanner from '../lib/components/CookieBanner.svelte';
 
 	let { children }: LayoutProps = $props();
+
+	// Smooth cross-fade between pages (View Transitions API), skipped when the
+	// user prefers reduced motion or the browser does not support it.
+	onNavigate((navigation) => {
+		if (typeof document === 'undefined') return;
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		const doc = document as Document & {
+			startViewTransition?: (cb: () => void | Promise<void>) => void;
+		};
+		if (!doc.startViewTransition) return;
+		return new Promise<void>((resolve) => {
+			doc.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 
 	const orgJsonLd = JSON.stringify({
 		'@context': 'https://schema.org',

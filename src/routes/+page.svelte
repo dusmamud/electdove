@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Icon from '../lib/components/Icon.svelte';
 	import ProductCard from '../lib/components/ProductCard.svelte';
+	import { reveal } from '../lib/actions/reveal';
 	import { readyToWear, smartphones } from '../lib/data/products';
 </script>
 
@@ -41,7 +42,7 @@
 </section>
 
 <!-- READY-TO-WEAR -->
-<section id="ready-to-wear" class="bg-mist">
+<section id="ready-to-wear" class="bg-mist" use:reveal>
 	<div class="mx-auto max-w-7xl px-4 pt-12 pb-16 sm:px-6 md:pt-16 md:pb-20">
 		<div class="flex items-end justify-between gap-4">
 			<h2 class="text-h1 font-extralight tracking-[0.05em] uppercase text-balance">Ready-to-wear</h2>
@@ -58,7 +59,7 @@
 </section>
 
 <!-- NEW COLLECTION FEATURE -->
-<section id="collection" class="bg-mist">
+<section id="collection" class="bg-mist" use:reveal>
 	<div class="mx-auto grid max-w-7xl gap-10 px-4 pb-16 sm:px-6 md:grid-cols-2 md:gap-12 md:pb-20">
 		<div class="overflow-hidden bg-[#e8e8e8]">
 			<img
@@ -94,7 +95,7 @@
 </section>
 
 <!-- SMARTPHONES FOR YOU -->
-<section id="smartphones" class="bg-mist">
+<section id="smartphones" class="bg-mist" use:reveal>
 	<div class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 md:pb-24">
 		<div class="flex items-end justify-between gap-4">
 			<h2 class="text-h1 font-extralight tracking-[0.05em] uppercase text-balance">Smartphones for you</h2>

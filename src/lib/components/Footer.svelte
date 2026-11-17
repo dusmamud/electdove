@@ -7,7 +7,9 @@
 		{ label: 'Audio', href: '/shop?category=Audio' },
 		{ label: 'Gaming', href: '/shop?category=Gaming' },
 		{ label: 'All Products', href: '/shop' },
-		{ label: 'Deals', href: '/deals' }
+		{ label: 'Deals', href: '/deals' },
+		{ label: 'Compare Products', href: '/compare' },
+		{ label: 'EMI Calculator', href: '/emi-calculator' }
 	];
 	const support = [
 		{ label: 'Track Order', href: '/track-order' },

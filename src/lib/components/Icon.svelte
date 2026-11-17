@@ -28,6 +28,10 @@
 		quote:
 			'<path d="M10 8c-3 .5-5 2.5-5 6v2h5v-6H7.5C8 9 9 8.5 10 8.3V8Zm9 0c-3 .5-5 2.5-5 6v2h5v-6h-2.5c.5-1 1.5-1.5 2.5-1.7V8Z"/>',
 		check: '<path d="m4.5 12.5 5 5 10-11"/>',
+		compare:
+			'<rect x="3.5" y="5" width="6.5" height="14" rx="1.5"/><rect x="14" y="5" width="6.5" height="14" rx="1.5"/>',
+		calculator:
+			'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 7.5h7"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5h.01"/>',
 		plus: '<path d="M12 5v14M5 12h14"/>',
 		minus: '<path d="M5 12h14"/>',
 		mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
