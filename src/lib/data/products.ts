@@ -277,7 +277,7 @@ export const products: Product[] = [
 		tag: 'New',
 		desc: 'The toughest Apple Watch ever. 49mm titanium case, the brightest display on any Apple Watch, dual-frequency GPS and up to 36 hours of battery for adventures on land and sea.',
 		src: '/product-watch.webp',
-		images: ['/product-watch.webp'],
+		images: ['/product-watch.webp', '/watch-ultra-2-face.webp', '/watch-ultra-2-side.webp', '/watch-ultra-2-back.webp'],
 		highlights: [
 			'49mm aerospace titanium case, sapphire crystal',
 			'3000-nit Always-On Retina display',
