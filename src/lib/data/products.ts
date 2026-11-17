@@ -219,7 +219,7 @@ export const products: Product[] = [
 		stock: 18,
 		desc: 'A15 Bionic power, a superb dual-camera system and all-day battery. The sweet spot of the iPhone line-up — everything most people need, for less.',
 		src: '/phone-iphone14.webp',
-		images: ['/phone-iphone14.webp'],
+		images: ['/phone-iphone14.webp', '/iphone-14-front.webp', '/iphone-14-side.webp', '/iphone-14-back.webp'],
 		highlights: [
 			'A15 Bionic chip — still fast for anything you throw at it',
 			'12MP dual camera with Night mode and Cinematic mode',
