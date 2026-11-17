@@ -482,6 +482,12 @@
 								<dd class="font-semibold text-green-700">−{formatPrice(shop.cartDiscount)}</dd>
 							</div>
 						{/if}
+						{#if shop.tradeInCredit > 0}
+							<div class="flex justify-between">
+								<dt class="text-stone-500">Trade-in credit <span class="text-xs">({shop.tradeInDevice})</span></dt>
+								<dd class="font-semibold text-green-700">−{formatPrice(shop.tradeInCredit)}</dd>
+							</div>
+						{/if}
 						<div class="flex justify-between">
 							<dt class="text-stone-500">Shipping</dt>
 							<dd class="font-semibold text-ink">{shop.cartShipping === 0 ? 'FREE' : formatPrice(shop.cartShipping)}</dd>

@@ -4,7 +4,7 @@
 	import Icon from '#lib/components/Icon.svelte';
 	import CheckoutSteps from '#lib/components/CheckoutSteps.svelte';
 	import { getProduct, productUrl} from '../../lib/data/products';
-	import { shop, formatPrice, formatDate, type Order } from '../../lib/data/store.svelte';
+	import { shop, formatPrice, formatDate, GIFT_WRAP_FEE, type Order } from '../../lib/data/store.svelte';
 
 	let order = $state<Order | undefined>(undefined);
 
@@ -84,6 +84,12 @@
 						<dd class="font-semibold text-green-700">−{formatPrice(order.discount)}</dd>
 					</div>
 				{/if}
+				{#if order.tradeIn}
+					<div class="flex justify-between">
+						<dt class="text-stone-500">Trade-in credit</dt>
+						<dd class="font-semibold text-green-700">−{formatPrice(order.tradeIn)}</dd>
+					</div>
+				{/if}
 				<div class="flex justify-between">
 					<dt class="text-stone-500">Shipping</dt>
 					<dd class="font-semibold text-ink">{order.shipping === 0 ? 'FREE' : formatPrice(order.shipping)}</dd>
@@ -91,7 +97,7 @@
 				{#if order.giftWrap}
 					<div class="flex justify-between">
 						<dt class="text-stone-500">Gift wrap</dt>
-						<dd class="font-semibold text-ink">{formatPrice(2.99)}</dd>
+						<dd class="font-semibold text-ink">{formatPrice(GIFT_WRAP_FEE)}</dd>
 					</div>
 				{/if}
 				<div class="flex justify-between border-t border-line pt-2 text-base">

@@ -2,7 +2,7 @@
 	import Icon from '../lib/components/Icon.svelte';
 	import ProductCard from '../lib/components/ProductCard.svelte';
 	import { reveal } from '../lib/actions/reveal';
-	import { readyToWear, smartphones } from '../lib/data/products';
+	import { readyToWear, smartphones, brands, brandProducts, formatPrice } from '../lib/data/products';
 </script>
 
 <!-- HERO -->
@@ -106,6 +106,43 @@
 		<div class="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 xl:grid-cols-4">
 			{#each smartphones as product}
 				<ProductCard {product} />
+			{/each}
+		</div>
+	</div>
+</section>
+
+<!-- SHOP BY BRAND -->
+<section id="brands" class="bg-mist" use:reveal>
+	<div class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 md:pb-24">
+		<div class="flex items-end justify-between gap-4">
+			<h2 class="text-h1 font-extralight tracking-[0.05em] uppercase text-balance">Shop by brand</h2>
+			<a href="/brands" class="mb-1 flex shrink-0 items-center gap-2 text-[11px] font-medium tracking-[0.16em] uppercase hover:opacity-60">
+				All brands <Icon name="arrow-right" class="h-3.5 w-3.5" />
+			</a>
+		</div>
+		<div class="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+			{#each brands as brand, i (brand.slug)}
+				<a
+					href="/brands/{brand.slug}"
+					class="group overflow-hidden rounded-2xl border border-line bg-white transition hover:border-black"
+				>
+					<div class="overflow-hidden">
+						<img
+							src={brand.photo}
+							alt={brand.name}
+							loading="lazy"
+							class="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+						/>
+					</div>
+					<div class="p-4">
+						<p class="text-sm font-extrabold text-ink">{brand.name}</p>
+						<p class="mt-0.5 text-xs text-stone-500">
+							{brandProducts(brand.name).length} products · from {formatPrice(
+								Math.min(...brandProducts(brand.name).map((p) => p.price))
+							)}
+						</p>
+					</div>
+				</a>
 			{/each}
 		</div>
 	</div>

@@ -19,6 +19,10 @@ export type Product = {
 	rating: number;
 	reviews: number;
 	category: string;
+	/** Brand, e.g. 'Apple', 'Samsung', 'Google', 'Sony'. */
+	brand: string;
+	/** New arrival — shown on /new-arrivals. */
+	isNew?: boolean;
 	stock: number;
 	/** Short badge shown on the landing grid, e.g. "New" or "Best Seller". */
 	tag?: string;
@@ -45,6 +49,8 @@ export const products: Product[] = [
 		rating: 4.8,
 		reviews: 214,
 		category: 'Smartphones',
+		brand: 'Apple',
+		isNew: true,
 		stock: 12,
 		desc: 'Titanium design, A17 Pro chip and a 48MP Pro camera system. The lightest Pro iPhone ever, with a USB-C port, Action Button and all-day battery life.',
 		src: '/phone-iphone15pro.webp',
@@ -102,6 +108,8 @@ export const products: Product[] = [
 		rating: 4.7,
 		reviews: 186,
 		category: 'Smartphones',
+		brand: 'Google',
+		isNew: true,
 		stock: 15,
 		desc: 'Google Tensor G3, the smartest Pixel camera yet and seven years of updates. Magic Eraser, Best Take and Night Sight make every photo look effortless.',
 		src: '/phone-pixel8pro.webp',
@@ -159,6 +167,8 @@ export const products: Product[] = [
 		rating: 4.8,
 		reviews: 243,
 		category: 'Smartphones',
+		brand: 'Samsung',
+		isNew: true,
 		stock: 10,
 		desc: 'Galaxy AI, a 200MP camera and the built-in S Pen. Titanium frame, flat 6.8" display and a battery that easily lasts two days of normal use.',
 		src: '/product-galaxy.webp',
@@ -216,6 +226,7 @@ export const products: Product[] = [
 		rating: 4.6,
 		reviews: 158,
 		category: 'Smartphones',
+		brand: 'Apple',
 		stock: 18,
 		desc: 'A15 Bionic power, a superb dual-camera system and all-day battery. The sweet spot of the iPhone line-up — everything most people need, for less.',
 		src: '/phone-iphone14.webp',
@@ -273,6 +284,8 @@ export const products: Product[] = [
 		rating: 4.7,
 		reviews: 132,
 		category: 'Smartwatches',
+		brand: 'Apple',
+		isNew: true,
 		stock: 9,
 		tag: 'New',
 		desc: 'The toughest Apple Watch ever. 49mm titanium case, the brightest display on any Apple Watch, dual-frequency GPS and up to 36 hours of battery for adventures on land and sea.',
@@ -331,6 +344,7 @@ export const products: Product[] = [
 		rating: 4.6,
 		reviews: 97,
 		category: 'Audio',
+		brand: 'Apple',
 		stock: 14,
 		desc: 'High-fidelity audio, computational audio and active noise cancellation in a beautifully built over-ear design. Personalised Spatial Audio puts you in the centre of the sound.',
 		src: '/product-headphones.webp',
@@ -388,6 +402,7 @@ export const products: Product[] = [
 		rating: 4.8,
 		reviews: 321,
 		category: 'Gaming',
+		brand: 'Sony',
 		stock: 7,
 		tag: 'Best Seller',
 		desc: 'Lightning-fast loading, 4K gaming up to 120Hz and the immersive DualSense controller. The PS5 puts you at the centre of the game with haptic feedback and adaptive triggers.',
@@ -446,6 +461,7 @@ export const products: Product[] = [
 		rating: 4.8,
 		reviews: 243,
 		category: 'Smartphones',
+		brand: 'Samsung',
 		stock: 10,
 		desc: 'Galaxy AI, a 200MP camera and the built-in S Pen. Titanium frame, flat 6.8" display and a battery that easily lasts two days of normal use.',
 		src: '/phone-galaxy-s24.webp',
@@ -546,3 +562,58 @@ export const smartphones: Product[] = [
 export function formatPrice(n: number): string {
 	return '₹' + n.toLocaleString('en-IN');
 }
+
+export type Brand = {
+	name: string;
+	slug: string;
+	tagline: string;
+	blurb: string;
+	photo: string;
+};
+
+export const BRAND_INFO: Record<string, { tagline: string; blurb: string; photo: string }> = {
+	Apple: {
+		tagline: 'Think different, every day.',
+		blurb: 'iPhone, Apple Watch and AirPods — the devices that defined the modern smartphone era, with the tightest hardware-software integration you can buy.',
+		photo: '/phone-iphone15pro.webp'
+	},
+	Samsung: {
+		tagline: 'Do what you can’t.',
+		blurb: 'Galaxy flagships with the brightest displays, the most versatile cameras and the S Pen — Android at its most ambitious.',
+		photo: '/product-galaxy.webp'
+	},
+	Google: {
+		tagline: 'The helpful phone.',
+		blurb: 'Pixel pairs Google’s smartest AI with a camera that does the thinking for you — seven years of updates included.',
+		photo: '/phone-pixel8pro.webp'
+	},
+	Sony: {
+		tagline: 'Play has no limits.',
+		blurb: 'PlayStation is where the biggest games live — lightning-fast loading, haptic feedback and worlds that pull you in.',
+		photo: '/product-ps5.webp'
+	}
+};
+
+/** All brands in the catalogue, with their products. */
+export const brands: Brand[] = Object.keys(BRAND_INFO).map((name) => ({
+	name,
+	slug: name.toLowerCase(),
+	...BRAND_INFO[name]
+}));
+
+export function brandSlug(name: string): string {
+	return name.toLowerCase();
+}
+
+export function getBrand(slug: string): Brand | undefined {
+	return brands.find((b) => b.slug === slug);
+}
+
+export function brandProducts(name: string): Product[] {
+	return products.filter((p) => p.brand === name);
+}
+
+/** New arrivals, most expensive first. */
+export const newArrivals: Product[] = products
+	.filter((p) => p.isNew)
+	.sort((a, b) => b.price - a.price);

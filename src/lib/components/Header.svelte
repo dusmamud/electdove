@@ -8,6 +8,7 @@
 		{ label: 'Home', href: '/' },
 		{ label: 'Shop', href: '/shop' },
 		{ label: 'Categories', href: '/categories' },
+		{ label: 'Brands', href: '/brands' },
 		{ label: 'Deals', href: '/deals' },
 		{ label: 'Blog', href: '/blog' },
 		{ label: 'Contact', href: '/contact' }
@@ -188,6 +189,10 @@
 				<a href="/wishlist" onclick={() => (menuOpen = false)}>Wishlist</a>
 				<a href="/compare" onclick={() => (menuOpen = false)}>Compare</a>
 				<a href="/emi-calculator" onclick={() => (menuOpen = false)}>EMI Calculator</a>
+				<a href="/new-arrivals" onclick={() => (menuOpen = false)}>New Arrivals</a>
+				<a href="/trade-in" onclick={() => (menuOpen = false)}>Trade-In</a>
+				<a href="/gift-cards" onclick={() => (menuOpen = false)}>Gift Cards</a>
+				<a href="/rewards" onclick={() => (menuOpen = false)}>Rewards</a>
 				<a href="/orders" onclick={() => (menuOpen = false)}>Orders</a>
 				<a href="/track-order" onclick={() => (menuOpen = false)}>Track Order</a>
 				<a href="/about" onclick={() => (menuOpen = false)}>About</a>

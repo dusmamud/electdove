@@ -8,20 +8,26 @@
 		{ label: 'Gaming', href: '/shop?category=Gaming' },
 		{ label: 'All Products', href: '/shop' },
 		{ label: 'Deals', href: '/deals' },
+		{ label: 'New Arrivals', href: '/new-arrivals' },
+		{ label: 'Brands', href: '/brands' },
 		{ label: 'Compare Products', href: '/compare' },
-		{ label: 'EMI Calculator', href: '/emi-calculator' }
+		{ label: 'EMI Calculator', href: '/emi-calculator' },
+		{ label: 'Trade-In', href: '/trade-in' },
+		{ label: 'Gift Cards', href: '/gift-cards' }
 	];
 	const support = [
 		{ label: 'Track Order', href: '/track-order' },
 		{ label: 'Shipping & Delivery', href: '/shipping-policy' },
 		{ label: 'Returns & Refunds', href: '/returns-policy' },
 		{ label: 'Warranty', href: '/help' },
+		{ label: 'Rewards', href: '/rewards' },
 		{ label: 'Contact Us', href: '/contact' }
 	];
 	const company = [
 		{ label: 'About Us', href: '/about' },
 		{ label: 'Blog', href: '/blog' },
 		{ label: 'Help Centre', href: '/help' },
+		{ label: 'Sitemap', href: '/sitemap' },
 		{ label: 'Privacy Policy', href: '/privacy-policy' },
 		{ label: 'Terms of Service', href: '/terms' }
 	];

@@ -50,6 +50,7 @@
 		'check-circle':
 			'<circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5.5"/>',
 		alert: '<circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/>',
+		gift: '<rect x="3.5" y="8" width="17" height="12.5" rx="1.5"/><path d="M12 8v12.5M3.5 12h17"/><path d="M12 8c-4.5 0-6-1.8-6-3.8C6 2.3 8.8 1.8 9.8 3.3 10.8 4.8 12 8 12 8Zm0 0c4.5 0 6-1.8 6-3.8 0-1.9-2.8-2.4-3.8-.9C13.2 4.8 12 8 12 8Z"/>',
 		sliders: '<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2.2"/><circle cx="10" cy="17" r="2.2"/>',
 		'credit-card': '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/>'
 	};

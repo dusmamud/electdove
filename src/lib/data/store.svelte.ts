@@ -53,6 +53,8 @@ export type Order = {
 	status: 'active' | 'cancelled';
 	notes?: string;
 	giftWrap?: boolean;
+	/** Trade-in credit applied to this order (from /trade-in). */
+	tradeIn?: number;
 };
 
 /** A delivery address saved to the account (address book). */
@@ -133,6 +135,9 @@ class ShopState {
 	recentIds = $state<number[]>([]);
 	/** Compare list: product ids, most recently added last (max 4). */
 	compareIds = $state<number[]>([]);
+	/** Trade-in credit from /trade-in (₹), and the old device it came from. */
+	tradeInCredit = $state(0);
+	tradeInDevice = $state('');
 	/** Reviews written by this user on this device, keyed by product id. */
 	private userReviews = $state<Record<number, Review[]>>({});
 
@@ -151,6 +156,9 @@ class ShopState {
 		}));
 		this.recentIds = read<number[]>('electdove_recent', []);
 		this.compareIds = read<number[]>('electdove_compare', []);
+		const tradeIn = read<{ credit: number; device: string }>('electdove_tradein', { credit: 0, device: '' });
+		this.tradeInCredit = tradeIn.credit;
+		this.tradeInDevice = tradeIn.device;
 		this.userReviews = read<Record<number, Review[]>>('electdove_reviews', {});
 		const sessionEmail = read<string | null>('electdove_session', null);
 		if (sessionEmail) {
@@ -181,7 +189,7 @@ class ShopState {
 	}
 
 	get cartTotal(): number {
-		return Math.max(0, this.cartSubtotal - this.cartDiscount + this.cartShipping);
+		return Math.max(0, this.cartSubtotal - this.cartDiscount - this.tradeInCredit + this.cartShipping);
 	}
 
 	get wishlistCount(): number {
@@ -313,6 +321,20 @@ class ShopState {
 	clearCompare() {
 		this.compareIds = [];
 		write('electdove_compare', this.compareIds);
+	}
+
+	// ---- trade-in credit (from /trade-in, applied to the bag total) ----
+	setTradeInCredit(credit: number, device: string) {
+		this.tradeInCredit = Math.max(0, Math.round(credit));
+		this.tradeInDevice = device;
+		write('electdove_tradein', { credit: this.tradeInCredit, device });
+		this.showToast(`Trade-in credit of ${formatPrice(this.tradeInCredit)} applied to your bag`);
+	}
+
+	clearTradeIn() {
+		this.tradeInCredit = 0;
+		this.tradeInDevice = '';
+		write('electdove_tradein', { credit: 0, device: '' });
 	}
 
 	// ---- recently viewed ----
@@ -496,10 +518,12 @@ class ShopState {
 			placedAt: Date.now(),
 			status: 'active',
 			notes: opts.notes?.trim() ? opts.notes.trim() : undefined,
-			giftWrap: giftWrap || undefined
+			giftWrap: giftWrap || undefined,
+			tradeIn: this.tradeInCredit > 0 ? this.tradeInCredit : undefined
 		};
 		this.orders = [order, ...this.orders];
 		write('electdove_orders', this.orders);
+		this.clearTradeIn();
 		this.clearCart();
 		return order;
 	}

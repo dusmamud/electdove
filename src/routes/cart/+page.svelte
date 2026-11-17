@@ -235,6 +235,21 @@
 								<dd class="font-semibold text-green-700">−{formatPrice(shop.cartDiscount)}</dd>
 							</div>
 						{/if}
+						{#if shop.tradeInCredit > 0}
+							<div class="flex justify-between">
+								<dt class="text-stone-500">
+									Trade-in credit <span class="text-xs">({shop.tradeInDevice})</span>
+									<button
+										type="button"
+										onclick={() => shop.clearTradeIn()}
+										class="ml-1 font-semibold text-black underline underline-offset-2"
+									>
+										Remove
+									</button>
+								</dt>
+								<dd class="font-semibold text-green-700">−{formatPrice(shop.tradeInCredit)}</dd>
+							</div>
+						{/if}
 						<div class="flex justify-between">
 							<dt class="text-stone-500">Shipping</dt>
 							<dd class="font-semibold text-ink">
