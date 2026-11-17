@@ -105,7 +105,7 @@ export const products: Product[] = [
 		stock: 15,
 		desc: 'Google Tensor G3, the smartest Pixel camera yet and seven years of updates. Magic Eraser, Best Take and Night Sight make every photo look effortless.',
 		src: '/phone-pixel8pro.webp',
-		images: ['/phone-pixel8pro.webp'],
+		images: ['/phone-pixel8pro.webp', '/pixel-8-pro-front.webp', '/pixel-8-pro-side.webp', '/pixel-8-pro-camera.webp'],
 		highlights: [
 			'Google Tensor G3 with on-device AI features',
 			'Pro camera: 50MP main, 48MP ultrawide, 48MP telephoto',
