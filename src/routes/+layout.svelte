@@ -29,12 +29,15 @@
 		});
 	});
 
+	// Organization logo is the ELECTDOVE wordmark (static/logo.png — same
+	// wordmark as the header). sameAs is omitted: the store has no social
+	// profiles, and invented URLs would be fake data.
 	const orgJsonLd = JSON.stringify({
 		'@context': 'https://schema.org',
 		'@type': 'Organization',
 		name: 'Electdove',
 		url: 'https://electdove.pages.dev/',
-		sameAs: []
+		logo: 'https://electdove.pages.dev/logo.png'
 	});
 </script>
 

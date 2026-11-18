@@ -5,6 +5,7 @@
 	import CheckoutSteps from '#lib/components/CheckoutSteps.svelte';
 	import { getProduct, productUrl} from '../../lib/data/products';
 	import { shop, formatPrice, formatDate, GIFT_WRAP_FEE, type Order } from '../../lib/data/store.svelte';
+	import { srcset } from '../../lib/images';
 
 	let order = $state<Order | undefined>(undefined);
 
@@ -63,7 +64,13 @@
 				{#each order.items as item (item.id)}
 					<li class="flex items-center gap-4 px-5 py-4">
 						<a href="{productUrl(item.id)}" class="block h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-mist">
-							<img src={item.src} alt={item.name} class="h-full w-full object-cover" />
+							<img
+								src={item.src}
+								srcset={srcset(item.src)}
+								sizes="64px"
+								alt={item.name}
+								class="h-full w-full object-cover"
+							/>
 						</a>
 						<span class="min-w-0 flex-1">
 							<span class="block truncate text-sm font-semibold text-ink">{item.name}</span>

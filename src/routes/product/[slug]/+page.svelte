@@ -7,6 +7,7 @@
 	import { reveal } from '../../../lib/actions/reveal';
 	import { getProduct, getProductBySlug, relatedProducts, type Review } from '../../../lib/data/products';
 	import { shop, formatDate, formatPrice, variantDelta, emiMonthly } from '../../../lib/data/store.svelte';
+	import { srcset, SIZES_PDP } from '../../../lib/images';
 
 	const product = $derived(getProductBySlug(page.params.slug ?? ''));
 	const related = $derived(product ? relatedProducts(product.id) : []);
@@ -39,6 +40,13 @@
 	let helpfulVoted = $state<Set<string>>(new Set());
 	let fbtSelected = $state<Set<number>>(new Set());
 
+	// Structured data: brand is the real manufacturer (product.brand —
+	// Apple/Samsung/Google/Sony), not the store name; image lists every
+	// gallery photo; sku is the store's internal code; review entries are
+	// the seeded reviews actually shown on this page (never invented);
+	// shipping is free for these products (every one costs over ₹499, the
+	// free-shipping threshold) with 3–4 day delivery in India; returns are
+	// free within 30 days (see /returns-policy).
 	const jsonLd = $derived(
 		product
 			? JSON.stringify({
@@ -46,19 +54,61 @@
 					'@type': 'Product',
 					name: product.name,
 					url: 'https://electdove.pages.dev/product/' + product.slug,
-					image: 'https://electdove.pages.dev' + product.src,
+					image: product.images.map((src) => 'https://electdove.pages.dev' + src),
 					description: product.desc,
-					brand: { '@type': 'Brand', name: 'Electdove' },
+					sku: 'ED-' + product.slug.replaceAll('-', '').toUpperCase(),
+					brand: { '@type': 'Brand', name: product.brand },
 					aggregateRating: {
 						'@type': 'AggregateRating',
 						ratingValue: product.rating,
 						reviewCount: product.reviews
 					},
+					review: product.seedReviews.map((r) => ({
+						'@type': 'Review',
+						author: { '@type': 'Person', name: r.name },
+						datePublished: new Date(r.date).toISOString().slice(0, 10),
+						reviewRating: {
+							'@type': 'Rating',
+							ratingValue: r.rating,
+							bestRating: 5
+						},
+						name: r.title,
+						reviewBody: r.text
+					})),
 					offers: {
 						'@type': 'Offer',
 						priceCurrency: 'INR',
 						price: product.price,
-						availability: 'https://schema.org/InStock'
+						availability: 'https://schema.org/InStock',
+						shippingDetails: {
+							'@type': 'OfferShippingDetails',
+							shippingRate: { '@type': 'MonetaryAmount', value: 0, currency: 'INR' },
+							shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'IN' },
+							deliveryTime: {
+								'@type': 'ShippingDeliveryTime',
+								handlingTime: {
+									'@type': 'QuantitativeValue',
+									minValue: 0,
+									maxValue: 1,
+									unitCode: 'DAY'
+								},
+								transitTime: {
+									'@type': 'QuantitativeValue',
+									minValue: 3,
+									maxValue: 4,
+									unitCode: 'DAY'
+								}
+							}
+						},
+						hasMerchantReturnPolicy: {
+							'@type': 'MerchantReturnPolicy',
+							applicableCountry: 'IN',
+							returnPolicyCategory:
+								'https://schema.org/MerchantReturnFiniteReturnWindow',
+							merchantReturnDays: 30,
+							returnFees: 'https://schema.org/FreeReturn',
+							returnPolicyUrl: 'https://electdove.pages.dev/returns-policy'
+						}
 					}
 				})
 			: ''
@@ -304,6 +354,14 @@
 		<meta property="og:image" content={'https://electdove.pages.dev' + product.src} />
 		<meta property="og:type" content="product" />
 		<meta name="twitter:card" content="summary_large_image" />
+		<!-- Preload the LCP image (first gallery photo) -->
+		<link
+			rel="preload"
+			as="image"
+			imagesrcset={srcset(product.src)}
+			imagesizes={SIZES_PDP}
+			fetchpriority="high"
+		/>
 		{@html `<script type="application/ld+json">${jsonLd}</script>`}
 	{/if}
 </svelte:head>
@@ -351,7 +409,10 @@
 						{#key images[activeImg]}
 							<img
 								src={images[activeImg] ?? product.src}
+								srcset={srcset(images[activeImg] ?? product.src)}
+								sizes={SIZES_PDP}
 								alt={product.name}
+								fetchpriority="high"
 								class="aspect-square w-full animate-fade-in object-cover"
 							/>
 						{/key}
@@ -406,7 +467,14 @@
 									? 'border-black'
 									: 'border-line opacity-70 hover:opacity-100'}"
 							>
-								<img src={src} alt="" loading="lazy" class="h-full w-full object-cover" />
+								<img
+									src={src}
+									srcset={srcset(src)}
+									sizes="80px"
+									alt=""
+									loading="lazy"
+									class="h-full w-full object-cover"
+								/>
 							</button>
 						{/each}
 					</div>
@@ -431,7 +499,7 @@
 
 				<p class="mt-4 flex flex-wrap items-baseline gap-3">
 					<span class="text-pdp font-extrabold text-ink">{formatPrice(unitPrice)}</span>
-					<span class="text-base text-stone-400 line-through"
+					<span class="text-base text-stone-600 line-through"
 						>{formatPrice(product.oldPrice)}</span
 					>
 					<span class="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-bold text-black">
@@ -501,7 +569,7 @@
 						{#if product.stock <= 15}
 							<span class="font-semibold text-amber-600">· Only {product.stock} left — order soon</span>
 						{:else}
-							<span class="text-stone-400">· {product.stock} available</span>
+							<span class="text-stone-500">· {product.stock} available</span>
 						{/if}
 					{:else}
 						<span class="h-2.5 w-2.5 rounded-full bg-red-500"></span>
@@ -661,12 +729,24 @@
 				<h2 class="text-lg font-extrabold tracking-tight text-ink">Frequently Bought Together</h2>
 				<div class="mt-4 flex flex-wrap items-center gap-3">
 					<a href="/product/{product.slug}" class="block h-20 w-20 overflow-hidden rounded-xl bg-mist">
-						<img src={product.src} alt={product.name} class="h-full w-full object-cover" />
+						<img
+							src={product.src}
+							srcset={srcset(product.src)}
+							sizes="80px"
+							alt={product.name}
+							class="h-full w-full object-cover"
+						/>
 					</a>
 					{#each fbtItems as item (item.id)}
 						<span class="text-xl font-bold text-stone-300" aria-hidden="true">+</span>
 						<a href="/product/{item.slug}" class="block h-20 w-20 overflow-hidden rounded-xl bg-mist">
-							<img src={item.src} alt={item.name} class="h-full w-full object-cover" />
+							<img
+								src={item.src}
+								srcset={srcset(item.src)}
+								sizes="80px"
+								alt={item.name}
+								class="h-full w-full object-cover"
+							/>
 						</a>
 					{/each}
 				</div>
@@ -779,7 +859,7 @@
 								</div>
 							{/each}
 						</div>
-						<p class="mt-3 text-[11px] text-stone-400">
+						<p class="mt-3 text-[11px] text-stone-500">
 							Breakdown from the {allReviews.length} reviews shown below.
 						</p>
 					</div>
@@ -826,7 +906,7 @@
 										<span class="text-sm font-bold text-ink">{r.title}</span>
 									</p>
 									<p class="mt-1.5 text-sm leading-relaxed text-stone-600">{r.text}</p>
-									<p class="mt-1.5 text-xs text-stone-400">{r.name} · {r.date}</p>
+									<p class="mt-1.5 text-xs text-stone-500">{r.name} · {r.date}</p>
 									<button
 										type="button"
 										onclick={() => toggleHelpful(r)}
@@ -970,6 +1050,8 @@
 							<a href="/product/{item.slug}" class="block aspect-square overflow-hidden bg-mist">
 								<img
 									src={item.src}
+									srcset={srcset(item.src)}
+									sizes={SIZES_CARD}
 									alt={item.name}
 									loading="lazy"
 									class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
@@ -997,6 +1079,8 @@
 								<a href="/product/{rel.slug}" aria-label={rel.name} class="block h-full w-full">
 									<img
 										src={rel.src}
+										srcset={srcset(rel.src)}
+										sizes={SIZES_CARD}
 										alt={rel.name}
 										loading="lazy"
 										class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
@@ -1015,7 +1099,7 @@
 								</button>
 								<button
 									type="button"
-									aria-label="Quick view {rel.name}"
+									aria-label="Quick view — {rel.name}"
 									onclick={() => shop.openQuickView(rel.id)}
 									class="absolute bottom-3 left-3 flex h-9 items-center gap-1.5 rounded-full bg-white/95 px-3 text-xs font-semibold text-ink opacity-0 shadow transition group-hover:opacity-100 focus:opacity-100"
 								>
@@ -1033,7 +1117,7 @@
 								</p>
 								<p class="mt-2 flex items-baseline gap-2">
 									<span class="text-base font-extrabold text-ink">{formatPrice(rel.price)}</span>
-									<span class="text-xs text-stone-400 line-through"
+									<span class="text-xs text-stone-600 line-through"
 										>{formatPrice(rel.oldPrice)}</span
 									>
 								</p>
@@ -1061,7 +1145,7 @@
 			<p class="truncate text-xs font-semibold text-ink">{product.name}</p>
 			<p class="text-sm font-extrabold text-ink">
 				{formatPrice(unitPrice)}
-				<span class="ml-1 text-xs font-normal text-stone-400 line-through"
+				<span class="ml-1 text-xs font-normal text-stone-600 line-through"
 					>{formatPrice(product.oldPrice)}</span
 				>
 			</p>
@@ -1168,6 +1252,8 @@
 			{/if}
 			<img
 				src={images[activeImg] ?? product.src}
+				srcset={srcset(images[activeImg] ?? product.src)}
+				sizes="100vw"
 				alt={product.name}
 				class="relative max-h-[85vh] max-w-full rounded-2xl object-contain shadow-2xl"
 			/>

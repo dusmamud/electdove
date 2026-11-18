@@ -3,6 +3,7 @@
 	import Icon from '#lib/components/Icon.svelte';
 	import { reveal } from '../../lib/actions/reveal';
 	import { brands, brandProducts, formatPrice } from '../../lib/data/products';
+	import { srcset } from '../../lib/images';
 
 	const withCounts = brands.map((b) => {
 		const items = brandProducts(b.name);
@@ -39,6 +40,8 @@
 				<div class="overflow-hidden">
 					<img
 						src={brand.photo}
+						srcset={srcset(brand.photo)}
+						sizes="(max-width: 767px) 50vw, 25vw"
 						alt={brand.name}
 						loading="lazy"
 						class="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"

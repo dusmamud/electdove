@@ -4,6 +4,7 @@
 	import Icon from '#lib/components/Icon.svelte';
 	import { getProduct, productUrl} from '../../lib/data/products';
 	import { shop, formatPrice, formatDate, ORDER_STEPS, type Order } from '../../lib/data/store.svelte';
+	import { srcset } from '../../lib/images';
 
 	let searchId = $state('');
 	let submitted = $state(false);
@@ -198,7 +199,13 @@
 					{#each found.items as item (item.id)}
 						<li class="flex items-center gap-3">
 							<a href="{productUrl(item.id)}" class="block h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-mist">
-								<img src={item.src} alt={item.name} class="h-full w-full object-cover" />
+								<img
+									src={item.src}
+									srcset={srcset(item.src)}
+									sizes="56px"
+									alt={item.name}
+									class="h-full w-full object-cover"
+								/>
 							</a>
 							<span class="min-w-0 flex-1">
 								<span class="block truncate text-sm font-semibold text-ink">{item.name}</span>

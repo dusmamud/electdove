@@ -4,6 +4,7 @@
 	import Stars from './Stars.svelte';
 	import { shop, formatPrice } from '../data/store.svelte';
 	import { getProduct } from '../data/products';
+	import { srcset } from '../images';
 
 	let closeBtn: HTMLButtonElement | undefined = $state();
 
@@ -73,7 +74,13 @@
 
 			<div class="grid sm:grid-cols-2">
 				<div class="aspect-square overflow-hidden bg-mist sm:rounded-l-3xl">
-					<img src={product.src} alt={product.name} class="h-full w-full object-cover" />
+					<img
+						src={product.src}
+						srcset={srcset(product.src)}
+						sizes="(max-width: 639px) 100vw, 50vw"
+						alt={product.name}
+						class="h-full w-full object-cover"
+					/>
 				</div>
 
 				<div class="flex flex-col p-5 sm:p-6">
@@ -86,7 +93,7 @@
 					</p>
 					<p class="mt-3 flex items-baseline gap-2">
 						<span class="text-2xl font-extrabold text-ink">{formatPrice(product.price)}</span>
-						<span class="text-sm text-stone-400 line-through">{formatPrice(product.oldPrice)}</span>
+						<span class="text-sm text-stone-600 line-through">{formatPrice(product.oldPrice)}</span>
 						<span class="rounded-full bg-neutral-100 px-2 py-0.5 text-xs font-bold text-black">
 							{Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)}% off
 						</span>

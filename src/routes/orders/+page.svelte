@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import Icon from '#lib/components/Icon.svelte';
 	import { shop, formatPrice, formatDate, ORDER_STEPS, type Order } from '../../lib/data/store.svelte';
+	import { srcset } from '../../lib/images';
 
 	const myOrders = $derived(shop.myOrders());
 
@@ -76,6 +77,8 @@
 								{#each order.items.slice(0, 4) as item}
 									<img
 										src={item.src}
+										srcset={srcset(item.src)}
+										sizes="44px"
 										alt={item.name}
 										class="h-11 w-11 rounded-full border-2 border-white object-cover shadow-sm"
 									/>

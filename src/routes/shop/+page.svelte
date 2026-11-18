@@ -7,6 +7,7 @@
 	import Breadcrumbs from '#lib/components/Breadcrumbs.svelte';
 	import { categories, products, type Product } from '../../lib/data/products';
 	import { shop, formatPrice } from '../../lib/data/store.svelte';
+	import { srcset } from '../../lib/images';
 
 	type SortKey = 'featured' | 'price-asc' | 'price-desc' | 'rating' | 'discount';
 	type PriceKey = 'all' | 'under60000' | '60000-85000' | '85000-115000' | '115000plus';
@@ -412,6 +413,8 @@
 								<a href="/product/{product.slug}" aria-label={product.name} class="block h-full w-full">
 									<img
 										src={product.src}
+										srcset={srcset(product.src)}
+										sizes="(max-width: 1279px) 50vw, 33vw"
 										alt={product.name}
 										loading="lazy"
 										class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
@@ -451,7 +454,7 @@
 								</p>
 								<p class="mt-2 flex items-baseline gap-2">
 									<span class="text-base font-extrabold text-ink">{formatPrice(product.price)}</span>
-									<span class="text-xs text-stone-400 line-through">{formatPrice(product.oldPrice)}</span>
+									<span class="text-xs text-stone-600 line-through">{formatPrice(product.oldPrice)}</span>
 								</p>
 								<button
 									type="button"

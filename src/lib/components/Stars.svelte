@@ -3,7 +3,9 @@
 	let { rating = 5, class: cls = 'h-3.5 w-3.5' }: { rating?: number; class?: string } = $props();
 </script>
 
-<span class="inline-flex items-center gap-0.5" aria-label={`Rated ${rating} out of 5`}>
+<!-- role="img" is required: a <span> with aria-label and no role is a
+	prohibited ARIA attribute (Lighthouse aria-prohibited-attr). -->
+<span class="inline-flex items-center gap-0.5" role="img" aria-label={`Rated ${rating} out of 5`}>
 	{#each [1, 2, 3, 4, 5] as i}
 		<Icon
 			name="star"

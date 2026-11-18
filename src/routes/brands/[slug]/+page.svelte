@@ -5,6 +5,7 @@
 	import Icon from '#lib/components/Icon.svelte';
 	import { reveal } from '../../../lib/actions/reveal';
 	import { getBrand, brandProducts, formatPrice } from '../../../lib/data/products';
+	import { srcset } from '../../../lib/images';
 
 	const brand = $derived(getBrand(page.params.slug ?? ''));
 	const items = $derived(brand ? brandProducts(brand.name) : []);
@@ -27,7 +28,13 @@
 	{#if brand}
 		<div class="mt-4 grid gap-8 md:grid-cols-2 md:gap-12">
 			<div use:reveal class="overflow-hidden rounded-2xl">
-				<img src={brand.photo} alt={brand.name} class="aspect-[4/3] w-full object-cover md:aspect-auto md:h-full" />
+				<img
+					src={brand.photo}
+					srcset={srcset(brand.photo)}
+					sizes="(max-width: 767px) 100vw, 50vw"
+					alt={brand.name}
+					class="aspect-[4/3] w-full object-cover md:aspect-auto md:h-full"
+				/>
 			</div>
 			<div use:reveal={{ delay: 120 }} class="flex flex-col justify-center">
 				<p class="text-xs font-bold tracking-[0.2em] text-stone-500 uppercase">Brand</p>

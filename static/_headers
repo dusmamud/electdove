@@ -1,0 +1,18 @@
+# Cloudflare Pages _headers — cache policy (two-tier: hashed assets + images
+# cached long, HTML always revalidated so deploys show up immediately).
+# See https://developers.cloudflare.com/pages/configuration/headers/
+
+/_app/immutable/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=604800
+
+/*.svg
+  Cache-Control: public, max-age=604800
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate

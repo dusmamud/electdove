@@ -4,6 +4,7 @@
 	import CheckoutSteps from '#lib/components/CheckoutSteps.svelte';
 	import { getProduct } from '../../lib/data/products';
 	import { shop, formatPrice, lineUnitPrice, FREE_SHIPPING_OVER, type CartItem } from '../../lib/data/store.svelte';
+	import { srcset } from '../../lib/images';
 
 	let promoInput = $state('');
 	let promoError = $state('');
@@ -99,7 +100,13 @@
 						{@const p = line.product!}
 						<li class="flex gap-4 p-4 sm:p-5">
 							<a href="/product/{p.slug}" class="block h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-mist sm:h-24 sm:w-24">
-								<img src={p.src} alt={p.name} class="h-full w-full object-cover" />
+								<img
+									src={p.src}
+									srcset={srcset(p.src)}
+									sizes="96px"
+									alt={p.name}
+									class="h-full w-full object-cover"
+								/>
 							</a>
 							<div class="min-w-0 flex-1">
 								<div class="flex items-start justify-between gap-3">
@@ -110,7 +117,7 @@
 										type="button"
 										onclick={() => removeLine(line)}
 										aria-label="Remove {p.name} from cart"
-										class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-stone-400 transition hover:bg-red-50 hover:text-red-500"
+										class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-stone-500 transition hover:bg-red-50 hover:text-red-500"
 									>
 										<Icon name="trash" class="h-4 w-4" />
 									</button>
@@ -219,7 +226,7 @@
 									<Icon name="alert" class="h-3.5 w-3.5" /> {promoError}
 								</p>
 							{:else}
-								<p class="mt-1.5 text-xs text-stone-400">Try WELCOME10 for 10% off or FREESHIP.</p>
+								<p class="mt-1.5 text-xs text-stone-500">Try WELCOME10 for 10% off or FREESHIP.</p>
 							{/if}
 						</form>
 					{/if}

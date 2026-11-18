@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Icon from '#lib/components/Icon.svelte';
 	import { products, categories } from '../../lib/data/products';
+	import { srcset } from '../../lib/images';
 
 	const countFor = (name: string) => products.filter((p) => p.category === name).length;
 </script>
@@ -23,6 +24,8 @@
 				<div class="relative aspect-[4/3] overflow-hidden">
 					<img
 						src={cat.photo}
+						srcset={srcset(cat.photo)}
+						sizes="(max-width: 767px) 50vw, 25vw"
 						alt={cat.name}
 						loading="lazy"
 						class="h-full w-full object-cover transition duration-500 group-hover:scale-105"

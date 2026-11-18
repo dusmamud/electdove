@@ -3,12 +3,27 @@
 	import ProductCard from '../lib/components/ProductCard.svelte';
 	import { reveal } from '../lib/actions/reveal';
 	import { readyToWear, smartphones, brands, brandProducts, formatPrice } from '../lib/data/products';
+	import { srcset, SIZES_HERO } from '../lib/images';
 </script>
+
+<!-- Preload the LCP image (hero) so the browser discovers it before the CSS
+	parses; fetchpriority="high" keeps it ahead of the other images. -->
+<svelte:head>
+	<link
+		rel="preload"
+		as="image"
+		imagesrcset={srcset('/hero.webp')}
+		imagesizes={SIZES_HERO}
+		fetchpriority="high"
+	/>
+</svelte:head>
 
 <!-- HERO -->
 <section id="top" class="relative overflow-hidden bg-[#8d99ad]">
 	<img
 		src="/hero.webp"
+		srcset={srcset('/hero.webp')}
+		sizes={SIZES_HERO}
 		alt="New collection — flagship smartphones in blue, silver and purple"
 		class="h-[560px] w-full object-cover object-[70%_center] sm:h-[620px] md:h-[680px] lg:object-center"
 		fetchpriority="high"
@@ -64,6 +79,8 @@
 		<div class="overflow-hidden bg-[#e8e8e8]">
 			<img
 				src="/collection-laptop.webp"
+				srcset={srcset('/collection-laptop.webp')}
+				sizes="(max-width: 767px) 100vw, 50vw"
 				alt="Premium black laptop from the new collection"
 				loading="lazy"
 				class="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-[1.03] md:aspect-auto md:h-full"
@@ -85,6 +102,8 @@
 			<div class="mt-auto overflow-hidden bg-[#e8e8e8] pt-8">
 				<img
 					src="/collection-cases.webp"
+					srcset={srcset('/collection-cases.webp')}
+					sizes="(max-width: 767px) 100vw, 50vw"
 					alt="Smartphone cases in black, white, pink and purple"
 					loading="lazy"
 					class="aspect-[16/9] w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
@@ -129,6 +148,8 @@
 					<div class="overflow-hidden">
 						<img
 							src={brand.photo}
+							srcset={srcset(brand.photo)}
+							sizes="(max-width: 767px) 50vw, 25vw"
 							alt={brand.name}
 							loading="lazy"
 							class="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"

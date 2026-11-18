@@ -3,6 +3,7 @@
 	import Icon from './Icon.svelte';
 	import { shop, formatPrice, lineUnitPrice, FREE_SHIPPING_OVER } from '../data/store.svelte';
 	import { getProduct } from '../data/products';
+	import { srcset } from '../images';
 
 	let closeBtn: HTMLButtonElement | undefined = $state();
 
@@ -124,7 +125,13 @@
 								class="block h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-mist"
 								aria-label={p.name}
 							>
-								<img src={p.src} alt={p.name} class="h-full w-full object-cover" />
+								<img
+									src={p.src}
+									srcset={srcset(p.src)}
+									sizes="80px"
+									alt={p.name}
+									class="h-full w-full object-cover"
+								/>
 							</a>
 							<div class="min-w-0 flex-1">
 								<div class="flex items-start justify-between gap-2">
@@ -144,7 +151,7 @@
 										type="button"
 										aria-label="Remove {p.name} from cart"
 										onclick={() => shop.removeFromCart(line.id, line.variant)}
-										class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-stone-400 transition hover:bg-red-50 hover:text-red-600"
+										class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-stone-500 transition hover:bg-red-50 hover:text-red-600"
 									>
 										<Icon name="trash" class="h-4 w-4" />
 									</button>
@@ -186,7 +193,7 @@
 						<span class="text-stone-500">Subtotal</span>
 						<span class="text-base font-extrabold text-ink">{formatPrice(shop.cartSubtotal)}</span>
 					</div>
-					<p class="mt-1 text-xs text-stone-400">Shipping &amp; taxes calculated at checkout.</p>
+					<p class="mt-1 text-xs text-stone-500">Shipping &amp; taxes calculated at checkout.</p>
 					<div class="mt-4 grid grid-cols-2 gap-3">
 						<a
 							href="/cart"

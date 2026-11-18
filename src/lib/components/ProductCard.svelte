@@ -2,6 +2,7 @@
 	import Icon from './Icon.svelte';
 	import { shop } from '../data/store.svelte';
 	import { formatPrice, type Product } from '../data/products';
+	import { srcset, SIZES_CARD } from '../images';
 
 	const { product }: { product: Product } = $props();
 
@@ -18,6 +19,8 @@
 		<a href="/product/{product.slug}" aria-label={product.name} class="block">
 			<img
 				src={product.src}
+				srcset={srcset(product.src)}
+				sizes={SIZES_CARD}
 				alt={product.name}
 				loading="lazy"
 				class="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
@@ -47,7 +50,7 @@
 		<button
 			class="absolute right-3 bottom-3 hidden min-h-11 items-center gap-2 bg-black px-4 py-3 text-[11px] font-medium tracking-[0.12em] text-white uppercase opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:flex"
 			onclick={addToBag}
-			aria-label="Add {product.name} to bag"
+			aria-label="Add to bag — {product.name}"
 		>
 			Add to bag
 		</button>
@@ -58,7 +61,9 @@
 	<p class="mt-1 text-xs text-muted md:text-sm">
 		{formatPrice(product.price)}
 		{#if product.oldPrice > product.price}
-			<span class="ml-1.5 text-stone-400 line-through">{formatPrice(product.oldPrice)}</span>
+			<!-- stone-600 (not 400): the strikethrough old price must still pass
+				WCAG AA contrast (4.5:1) on the mist section background. -->
+			<span class="ml-1.5 text-stone-600 line-through">{formatPrice(product.oldPrice)}</span>
 		{/if}
 	</p>
 	<button
@@ -66,11 +71,11 @@
 		onclick={() => shop.toggleCompare(product.id)}
 		aria-pressed={shop.isComparing(product.id)}
 		aria-label={shop.isComparing(product.id)
-			? `Remove ${product.name} from compare`
-			: `Add ${product.name} to compare`}
+			? `Added to compare — ${product.name}`
+			: `Add to compare — ${product.name}`}
 		class="mt-2 flex min-h-9 items-center gap-1.5 text-xs font-semibold transition {shop.isComparing(product.id)
 			? 'text-black'
-			: 'text-stone-500 hover:text-black'}"
+			: 'text-stone-600 hover:text-black'}"
 	>
 		<Icon name="compare" class="h-4 w-4" />
 		{shop.isComparing(product.id) ? 'Added to compare' : 'Add to compare'}
@@ -78,7 +83,7 @@
 	<button
 		type="button"
 		onclick={addToBag}
-		aria-label="Add {product.name} to bag"
+		aria-label={added ? `Added to Bag — ${product.name}` : `Add to Bag — ${product.name}`}
 		class="press mt-3 flex min-h-11 w-full items-center justify-center gap-2 rounded-lg px-3 py-3 text-[11px] font-semibold tracking-[0.12em] uppercase transition md:hidden {added
 			? 'bg-black text-white'
 			: 'border border-line bg-white text-ink hover:border-black'}"

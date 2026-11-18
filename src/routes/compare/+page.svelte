@@ -6,6 +6,7 @@
 	import { reveal } from '../../lib/actions/reveal';
 	import { products, productUrl } from '../../lib/data/products';
 	import { shop, formatPrice } from '../../lib/data/store.svelte';
+	import { srcset } from '../../lib/images';
 
 	const items = $derived(shop.compareProducts);
 	let differencesOnly = $state(false);
@@ -122,6 +123,8 @@
 								<a href={productUrl(product.id)} class="block">
 									<img
 										src={product.src}
+										srcset={srcset(product.src)}
+										sizes="176px"
 										alt={product.name}
 										loading="lazy"
 										class="aspect-square w-full max-w-44 rounded-xl object-cover"

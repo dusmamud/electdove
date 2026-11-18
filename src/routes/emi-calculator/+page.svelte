@@ -6,6 +6,7 @@
 	import { reveal } from '../../lib/actions/reveal';
 	import { products, getProductBySlug } from '../../lib/data/products';
 	import { formatPrice, calcEmi } from '../../lib/data/store.svelte';
+	import { srcset } from '../../lib/images';
 
 	const TENURES = [3, 6, 9, 12, 18, 24];
 	const RATES = [
@@ -134,7 +135,13 @@
 		<!-- Result -->
 		<div use:reveal={{ delay: 120 }} class="flex flex-col rounded-2xl bg-black p-5 text-white sm:p-6 lg:col-span-2">
 			<div class="flex items-center gap-3">
-				<img src={product.src} alt="" class="h-14 w-14 rounded-xl object-cover" />
+				<img
+					src={product.src}
+					srcset={srcset(product.src)}
+					sizes="56px"
+					alt=""
+					class="h-14 w-14 rounded-xl object-cover"
+				/>
 				<div class="min-w-0">
 					<p class="truncate text-sm font-bold">{product.name}</p>
 					<p class="text-xs text-white/60">Price {formatPrice(price)}</p>

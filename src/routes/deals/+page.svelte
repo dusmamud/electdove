@@ -5,6 +5,7 @@
 	import Breadcrumbs from '#lib/components/Breadcrumbs.svelte';
 	import { products } from '../../lib/data/products';
 	import { shop, formatPrice } from '../../lib/data/store.svelte';
+	import { srcset } from '../../lib/images';
 
 	const discount = (p: (typeof products)[number]) =>
 		Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100);
@@ -102,6 +103,8 @@
 				<div class="relative aspect-square overflow-hidden bg-mist">
 					<img
 						src={product.src}
+						srcset={srcset(product.src)}
+						sizes="(max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 20vw"
 						alt={product.name}
 						loading="lazy"
 						class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
@@ -139,7 +142,7 @@
 					</p>
 					<p class="mt-2 flex items-baseline gap-2">
 						<span class="text-base font-extrabold text-ink">{formatPrice(product.price)}</span>
-						<span class="text-xs text-stone-400 line-through">{formatPrice(product.oldPrice)}</span>
+						<span class="text-xs text-stone-600 line-through">{formatPrice(product.oldPrice)}</span>
 					</p>
 					<button
 						type="button"
@@ -156,7 +159,7 @@
 		{/each}
 	</div>
 
-	<p class="mt-6 text-center text-xs text-stone-400">
+	<p class="mt-6 text-center text-xs text-stone-500">
 		Discounts shown against the original price. Promo code WELCOME10 gives an extra 10% off at checkout.
 	</p>
 </section>

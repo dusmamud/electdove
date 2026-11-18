@@ -5,6 +5,7 @@
 	import CheckoutSteps from '#lib/components/CheckoutSteps.svelte';
 	import { getProduct } from '../../lib/data/products';
 	import { shop, formatPrice, lineUnitPrice, GIFT_WRAP_FEE, type Address, type SavedAddress } from '../../lib/data/store.svelte';
+	import { srcset } from '../../lib/images';
 
 	type PaymentMethod = 'cod' | 'card' | 'upi';
 
@@ -247,7 +248,7 @@
 							{#if errors.email}<p class="mt-1 text-xs text-red-600">{errors.email}</p>{/if}
 						</div>
 						<div data-error={!!errors.phone}>
-							<label for="phone" class="text-xs font-semibold text-stone-500">Phone <span class="font-normal text-stone-400">(optional)</span></label>
+							<label for="phone" class="text-xs font-semibold text-stone-500">Phone <span class="font-normal text-stone-500">(optional)</span></label>
 							<input id="phone" type="tel" bind:value={phone} placeholder="+91 98765 43210" autocomplete="tel" class="{inputCls} mt-1.5 {errors.phone ? 'border-red-400' : ''}" />
 							{#if errors.phone}<p class="mt-1 text-xs text-red-600">{errors.phone}</p>{/if}
 						</div>
@@ -380,7 +381,7 @@
 						Delivery &amp; Gifting
 					</h2>
 					<div class="mt-4">
-						<label for="notes" class="text-xs font-semibold text-stone-500">Delivery instructions <span class="font-normal text-stone-400">(optional)</span></label>
+						<label for="notes" class="text-xs font-semibold text-stone-500">Delivery instructions <span class="font-normal text-stone-500">(optional)</span></label>
 						<textarea
 							id="notes"
 							bind:value={notes}
@@ -415,7 +416,13 @@
 							{@const p = line.product!}
 							<li class="flex items-center gap-3">
 								<span class="relative block h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-mist">
-									<img src={p.src} alt={p.name} class="h-full w-full object-cover" />
+									<img
+									src={p.src}
+									srcset={srcset(p.src)}
+									sizes="56px"
+									alt={p.name}
+									class="h-full w-full object-cover"
+								/>
 									<span class="absolute -top-0 -right-0 flex h-5 w-5 items-center justify-center rounded-full bg-black text-[10px] font-bold text-white">{line.qty}</span>
 								</span>
 								<span class="min-w-0 flex-1">
@@ -466,7 +473,7 @@
 									<Icon name="alert" class="h-3.5 w-3.5" /> {promoError}
 								</p>
 							{:else}
-								<p class="mt-1.5 text-xs text-stone-400">Try WELCOME10 for 10% off or FREESHIP.</p>
+								<p class="mt-1.5 text-xs text-stone-500">Try WELCOME10 for 10% off or FREESHIP.</p>
 							{/if}
 						</div>
 					{/if}
