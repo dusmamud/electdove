@@ -518,7 +518,7 @@
 						<Icon name="lock" class="h-4 w-4" />
 						{placing ? 'Placing Order…' : `Place Order · ${formatPrice(orderTotal)}`}
 					</button>
-					<p class="mt-3 text-center text-xs text-stone-400">
+					<p class="mt-3 text-center text-xs text-stone-500">
 						By placing this order you agree to our
 						<a href="/terms" class="font-medium text-black hover:underline">Terms</a>
 						and

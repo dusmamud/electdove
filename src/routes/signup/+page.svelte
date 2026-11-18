@@ -33,7 +33,7 @@
 			: password.length < 6
 				? 'text-red-600'
 				: password.length < 9
-					? 'text-amber-600'
+					? 'text-amber-700'
 					: 'text-black'
 	);
 

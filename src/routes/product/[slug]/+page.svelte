@@ -567,7 +567,7 @@
 						<span class="h-2.5 w-2.5 rounded-full bg-green-500"></span>
 						<span class="text-green-700">In stock</span>
 						{#if product.stock <= 15}
-							<span class="font-semibold text-amber-600">· Only {product.stock} left — order soon</span>
+							<span class="font-semibold text-amber-700">· Only {product.stock} left — order soon</span>
 						{:else}
 							<span class="text-stone-500">· {product.stock} available</span>
 						{/if}
@@ -1199,7 +1199,7 @@
 						{/each}
 					</tbody>
 				</table>
-				<p class="mt-4 text-xs text-stone-400">
+				<p class="mt-4 text-xs text-stone-500">
 					Still unsure? Free 30-day returns — if the fit is wrong, send it back.
 				</p>
 			</div>

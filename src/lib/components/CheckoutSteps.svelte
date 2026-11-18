@@ -35,7 +35,7 @@
 						<span class="hidden sm:inline">{s.label}</span>
 					</span>
 				{:else}
-					<span class="flex shrink-0 items-center gap-2 text-sm font-medium text-stone-400">
+					<span class="flex shrink-0 items-center gap-2 text-sm font-medium text-stone-500">
 						<span class="flex h-8 w-8 items-center justify-center rounded-full bg-stone-200 text-stone-500">
 							{s.n}
 						</span>

@@ -84,7 +84,7 @@
 		<div class="mt-8 rounded-2xl border border-dashed border-line bg-mist px-6 py-16 text-center">
 			<Icon name="bag" class="mx-auto h-12 w-12 text-stone-300" />
 			<p class="mt-4 text-lg font-bold text-ink">Your bag is empty</p>
-			<p class="mt-1 text-sm text-stone-500">Browse our best sellers and add something you love.</p>
+			<p class="mt-1 text-sm text-stone-600">Browse our best sellers and add something you love.</p>
 			<a
 				href="/shop"
 				class="mt-6 inline-flex items-center gap-2 rounded-lg bg-black px-6 py-3 text-sm font-semibold text-white transition hover:bg-neutral-900"
@@ -284,7 +284,7 @@
 					>
 						Proceed to Checkout <Icon name="arrow-right" class="h-4 w-4" />
 					</button>
-					<p class="mt-3 flex items-center justify-center gap-1.5 text-xs text-stone-400">
+					<p class="mt-3 flex items-center justify-center gap-1.5 text-xs text-stone-500">
 						<Icon name="shield" class="h-3.5 w-3.5" /> Secure checkout · 30-day returns
 					</p>
 				</div>

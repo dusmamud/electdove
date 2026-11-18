@@ -93,7 +93,7 @@
 							<div class="h-2 overflow-hidden rounded-full bg-stone-200">
 								<div class="h-full rounded-full {order.status === 'cancelled' ? 'bg-red-400' : 'bg-black'} transition-all" style="width: {order.status === 'cancelled' ? 100 : progress(order)}%"></div>
 							</div>
-							<div class="mt-1.5 flex justify-between text-[11px] font-medium text-stone-400">
+							<div class="mt-1.5 flex justify-between text-[11px] font-medium text-stone-500">
 								<span class={step >= 0 && order.status !== 'cancelled' ? 'text-black' : ''}>Placed</span>
 								<span class={step >= 2 && order.status !== 'cancelled' ? 'text-black' : ''}>Shipped</span>
 								<span class={step >= 4 && order.status !== 'cancelled' ? 'text-black' : ''}>Delivered</span>

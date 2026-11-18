@@ -68,7 +68,7 @@
 		</button>
 	</form>
 	{#if !submitted}
-		<p class="mt-2.5 flex items-start gap-1.5 text-xs text-stone-400">
+		<p class="mt-2.5 flex items-start gap-1.5 text-xs text-stone-500">
 			<Icon name="alert" class="mt-0.5 h-3.5 w-3.5 shrink-0" />
 			Your order ID looks like EDXXXXXXXX — you'll find it on the order confirmation page and in your order confirmation email.
 		</p>
@@ -141,10 +141,10 @@
 								{/if}
 							</span>
 							<span class="pt-1">
-								<span class="block text-sm font-semibold {i <= step ? 'text-ink' : 'text-stone-400'}">
+								<span class="block text-sm font-semibold {i <= step ? 'text-ink' : 'text-stone-500'}">
 									{label}
 								</span>
-								<span class="text-xs {i <= step ? 'text-stone-500' : 'text-stone-400'}">
+								<span class="text-xs {i <= step ? 'text-stone-500' : 'text-stone-500'}">
 									{#if i < step}Completed
 									{:else if i === step}Current status
 									{:else}Pending{/if}
