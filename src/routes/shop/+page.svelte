@@ -414,7 +414,7 @@
 									<img
 										src={product.src}
 										srcset={srcset(product.src)}
-										sizes="(max-width: 1279px) 50vw, 33vw"
+										sizes="(max-width: 1279px) 50vw, 320px"
 										alt={product.name}
 										loading="lazy"
 										class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
