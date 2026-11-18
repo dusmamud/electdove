@@ -7,7 +7,7 @@
 	import { reveal } from '../../../lib/actions/reveal';
 	import { getProduct, getProductBySlug, relatedProducts, type Review } from '../../../lib/data/products';
 	import { shop, formatDate, formatPrice, variantDelta, emiMonthly } from '../../../lib/data/store.svelte';
-	import { srcset, SIZES_PDP } from '../../../lib/images';
+	import { srcset, SIZES_PDP, SIZES_CARD } from '../../../lib/images';
 
 	const product = $derived(getProductBySlug(page.params.slug ?? ''));
 	const related = $derived(product ? relatedProducts(product.id) : []);
